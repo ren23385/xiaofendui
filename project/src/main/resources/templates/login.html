@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>会员登录</title>
+		<link rel="stylesheet" href="/resources/css/bootstrap3.min.css" type="text/css" />
+		<script src="/resources/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+		<script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
+		<!-- 引入自定义css文件 style.css -->
+		<link rel="stylesheet" href="/resources/css/style.css" type="text/css" />
+
+		<style>
+			body {
+				margin-top: 20px;
+				margin: 0 auto;
+			}
+			
+			.carousel-inner .item img {
+				width: 100%;
+				height: 300px;
+			}
+			
+			.container .row div {
+				/* position:relative;
+				 float:left; */
+			}
+			
+			font {
+				color: #666;
+				font-size: 22px;
+				font-weight: normal;
+				padding-right: 17px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 引入header.jsp -->
+		<div class="container-fluid" style="margin-top: 20px;">
+
+			<div class="col-md-4">
+				<img src="/resources/img/login/logo.png" />
+				
+			</div>
+			<div class="col-md-5">
+				<!--<img src="img/login/header.png" />-->
+				<img src="/resources/img/login/bottom.png" />
+				<img src="/resources/img/login/bottom2.gif" />
+			</div>
+			<div class="col-md-3" style="padding-top:20px">
+				<ol class="list-inline">
+
+					<li>
+						<a href="login.jsp">登录</a>
+					</li>
+					<li>
+						<a href="register.jsp">注册</a>
+					</li>
+
+					<!--<li>欢迎:${user.username}</li>-->
+					<li>
+						<a href="#">退出</a>
+					</li>
+
+					<li>
+						<a href="cart.jsp">购物车</a>
+					</li>
+					<li>
+						<a href="order_list.jsp">我的订单</a>
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		
+		<!--登陆区-->
+
+		<div class="container" style="width: 98%; height: 460px; background:   no-repeat; margin-left: 19px;margin-top: 20px;">
+			<div class="row" >
+				<div class="col-md-7">
+					<div style="margin-top: 35px;margin-left: 35px;">
+						<img src="/resources/img/login/view.png" style="width: 500px;height: 400px;" />
+					</div>
+					<!--<img src="./image/image/login.jpg" width="500" height="330" alt="会员登录" title="会员登录">-->
+				</div>
+
+				<div class="col-md-5" >
+					<div style="width: 440px; border: 1px solid #E7E7E7; padding: 20px 0 20px 30px; border-radius: 5px; margin-top: 60px; background: #fff;">
+						<font>会员登录</font>USER LOGIN
+						<div>&nbsp;</div>
+
+						<form class="form-horizontal" action="${pageContext.request.contextPath }/UserLoginServlet" method="post">
+							<div class="form-group">
+								<label for="username" class="col-sm-2 control-label">用户</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="username" placeholder="请输入用户名" name="username">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="password">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputVcode" class="col-sm-2 control-label">验证码</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="inputVcode" placeholder="请输入验证码">
+								</div>
+								<div class="col-sm-4">
+									<img src="/resources/img/login/captcha.jhtml" style="height: 31px; width: 115px;" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<div class="checkbox">
+										<label> <input type="checkbox"   name="autoLogin"  value="autoLogin"> 自动登录
+									</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
+										type="checkbox"> 记住用户名
+									</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<input type="submit" width="100" value="登录" name="submit" style="background: #FF2832 no-repeat scroll 0 0  ; height: 35px; width: 200px; color: white;">
+										
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr />
+		
+		<!--尾部-->
+		<div class="container-fluid">
+	<div class="row" style="background-color: #FEF7F5; height: 150px;line-height: 100px;margin-top: 50px">
+		<div class="col-md-12">
+
+			<div class="footer_nav" style="font-size: 18px;font-family: '微软雅黑'; text-align: center;">
+				<a href="http://static.dangdang.com/topic/2227/176801.shtml" target="_blank" rel="nofollow">公司简介</a><span class="sep">|</span>
+				<a href="http://zhaopin.dangdang.com" target="_blank">诚聘英才</a><span class="sep">|</span>
+				<a href="http://static.dangdang.com/topic/744/200778.shtml" target="_blank">手机当当</a><span class="sep">|</span>
+				<a href="http://union.dangdang.com/" target="_blank">网站联盟</a><span class="sep">|</span>
+				<a href="http://outlets.dangdang.com/merchants_open" target="_blank">当当招商</a><span class="sep">|</span>
+				<a href="http://misc.dangdang.com/groupbuy/Default.aspx" target="_blank" rel="nofollow">机构销售</a><span class="sep">|</span>
+				<a href="http://blog.dangdang.com/" target="_blank">官方Blog</a>
+			</div>
+
+		</div>
+		
+	</div>
+		
+	
+</div>
+
+<div class="col-md-12" style="background-color: #FEF7F5;text-align: center; ">
+	<div class="footer_copyright"><span>Copyright (C) 当当网 2004-2017, All Rights Reserved</span></div>
+</div>
+
+	</body>
+
+</html>

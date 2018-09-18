@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no,user-scalable=no">
+<title>新用户注册</title>
+<link rel="icon" type="image/x-icon"
+	href="/resources/register_img/favicon.ico" />
+<link href="/resources/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
+<style type="text/css">
+#butt_submit {
+	font-size: 20px;
+	border: 0;
+	width: 178px;
+	height: 44px;
+	line-height: 44px;
+	cursor: pointer;
+	line-height: 10px;
+	text-align: center;
+	background-color: #ff2832;
+	color: #fff;
+	border-radius: 22px;
+	margin-left: 50px;
+	
+}
+</style>
+<style type="text/css">
+#nav_operate {
+	display: inline;
+	padding-left: 10px;
+	padding-right: 6px;
+}
+
+#nav_operate a:hover {
+	color: #FF2832;
+}
+a{
+color:black;
+
+}
+</style>
+<style type="text/css">
+#input_div {
+	margin-bottom: 30px;
+	position: relative;
+}
+.col-sm-3.col-form-label{
+
+font-size: 20px;
+font-family: fantasy;
+
+
+ }
+ .form-group.row{
+ 
+ margin-top: 50px;
+ 
+ }
+ input{
+ 
+ height: 44px;
+ }
+ 
+</style>
+</head>
+<body style="background-color: #FEF7F5">
+	<div class="card" style="margin-left: 200px; margin-right: 200px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px;">
+		<div class="card-header"
+			style="padding-bottom: 6px;padding-top: 6px;border-bottom-width: 0px;padding-left: 0px;">
+			<nav class="navbar" style="padding-top: 4px;padding-bottom: 4px;padding-left: 0px;">
+			    <div>
+				<img src="/resources/img/register_img/ddnewhead_logo.gif"
+					style="width: 180px;height: 80px;" />
+				</div>
+				<div class="headoperate" id="headmenu" style="text-align: center;">
+					<ul class="nav_operate">
+						<li id="nav_operate"><a href="" target="_blank">购物车</a></li>
+						<li id="nav_operate"><a href="" target="_blank">我的当当</a></li>
+						<li id="nav_operate"><a href="" target="_blank">手机当当</a></li>
+						<li id="nav_operate"><a href="" target="_blank">企业销售</a></li>
+						<li id="nav_operate"><a href="" target="_blank">帮助</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div style="border: solid 2px #FF2832; width: 100%;"></div>
+		<div class="card-block"
+			style="margin-top: 60px;  border-bottom-width: 0px; border: 5px solid #e5e5e5; border-width: 0px 0px 5px 5px;">
+			<div class="container-fluid w-50" id="input_div">
+				<div class="col-md-12" style="margin-top: 30px;" id="input_div">
+					<form action="register" method="post">
+
+						<div class="form-group row" id="inputnum">
+							<label for="inputmobile" class="col-sm-3 col-form-label" >手机号码:</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="inputmobile"
+									placeholder="请输入手机号" name="num" >
+							</div>
+						</div>
+
+						<div class="form-group row" id="password">
+							<label for="inputPassword" class="col-sm-3 col-form-label">登录密码:</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPassword"
+									placeholder="请设置密码" name="pwd">
+							</div>
+						</div>
+
+						<div class="form-group row" id="password2">
+							<label for="inputPassword2" class="col-sm-3 col-form-label">确认密码:</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPassword2"
+									placeholder="请确认密码"  name="pwd">
+							</div>
+						</div>
+						<div class="form-group row" id="inv_code">
+							<label for="inputVcode" class="col-sm-3 col-form-label">验证码:</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="inputVcode"
+									placeholder="验证码不区分大小写"  name="vcode"
+									maxlength="4" autocomplete="off">
+							</div>
+							<div class="col-sm-3">
+								<img title="点击换图片" src="vcode.png" class="vcodeimg"
+									style="width: 80px"><a class="vcodeimg"
+									>换一张</a>
+							</div>
+						</div>
+						<div class="form-group row button" >
+							<div class="col-sm-10 offset-md-2" style="margin-bottom:30px ">
+								<button type="submit" class="btn btn-primary" id="butt_submit">点击注册</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="card-footer text-muted">
+			<div class="footer_nav"
+				style="line-height: 100px; text-align: center;">
+				<a href="" target="_blank" rel="nofollow">公司简介</a><span class="sep">|</span><a
+					href="" target="_blank">诚聘英才</a><span class="sep">|</span><a
+					href="" target="_blank">手机当当</a><span class="sep">|</span><a
+					href="" target="_blank">网站联盟</a><span class="sep">|</span><a
+					href="" target="_blank">当当招商</a><span class="sep">|</span><a
+					href="" target="_blank" rel="nofollow">机构销售</a><span class="sep">|</span><a
+					href="" target="_blank">官方Blog</a>
+			</div>
+			<div class="footer_copyright"
+				style="line-height: 50px; text-align: center;">
+				<span>Copyright (C) 当当网 2004-2017, All Rights Reserved</span>
+			</div>
+			<div class="footer_copyright"
+				style="line-height: 30px; text-align: center;">
+				<span>京ICP证041189号</span><span class="sep">|</span><span>出版物经营许可证
+					新出发京批字第直0673号</span><span class="sep">|</span><span>食品流通许可证：SP1101011010021855(1-1)</span><br>
+				<span>互联网药品信息服务资格证编号：(京)-非经营性-2012-0016</span><span class="sep">|</span><span>京公网安备110101000001号</span>
+			</div>
+			<!-- 有三个icon的时候加footer_icon2 -->
+			<div class="footer_icon footer_icon2" style="padding-left: 55px;">
+				<div class="validator">
+					<a></a>
+				</div>
+				<div class="validator">
+					<a><img src=""></a>
+				</div>
+				<div class="validator">
+					<a href="" target="_blank"><img src=""></a>
+				</div>
+				<div class="validator">
+					<a><img src=""></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 底部文件 -->
+
+	<script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
+		</script>
+	<script type="text/javascript" src="/resources/js/bootstrap.js">
+		</script>
+	<script type="text/javascript">
+		$(function() {
+			$(".col-sm-3  .vcodeimg").click(
+					function() {
+						//追加一个随机数，要不然只能换一次
+						$(".col-sm-3  img.vcodeimg").attr("src",
+								"vcode.png?t=" + Math.random());
+					});
+		});
+	</script>
+</body>
+</html>
