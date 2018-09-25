@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>支付</title>
+<link href="/resources/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />	
+	<style type="text/css">			
+		.col-sm-2{
+			border:  2px solid transparent;
+			float: left;
+			margin-left: 20px;						
+			}
+		a{				
+			color: #0000009e;	
+			}					
+	</style>	
+	<style type="text/css">
+ #butt_submit{
+ width:140px;
+ height: 40px;
+    font: 16px/36px "Microsoft Yahei";
+    overflow: hidden;
+    margin: 0 0 3px 10px;
+    float: left;
+    padding: 0 15px;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #ff2832;
+    color: #fff;
+    }
+    </style>
+    
+    <style>
+    	.bank{
+    		margin-left: 9px;
+    		margin-right: 9px;
+    	}   	
+    </style>
+<style type="text/css">
+  
+.clear {
+	clear: both
+	}
+.RadioStyle input {
+	display: none
+	}
+.RadioStyle label {
+	border: 1px solid #CCC;
+	color: #666;
+	padding: 2px 10px 2px 5px;
+	line-height: 28px;
+	min-width: 80px;
+	text-align: center;
+	float: left;
+	margin: 2px;
+	border-radius: 4px
+}
+.RadioStyle input:checked + label {
+	
+	border: 2px solid orange;
+	background-size: 21px 21px;
+	color: #00a4ff
+	}
+.RadioStyle input:disabled + label {
+	opacity: 0.7;
+	}
+	  
+    </style>
+	</head>
+	<body style="background-color: #FEF7F5;">
+		<div class="container-fluid">
+		<!--1 购物车项头顶设计-->
+		<div >
+			<div class="row">
+				<div class="col-md-12">
+					<div style="margin-top: 10px;padding-left:90px ;">
+						<img src="/resources/img/payment/shouyin.png" />						
+						<span style="margin-left: 50px;">
+							<img src="/resources/img/order/dingdan2.png" style="width: 650px;"/>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--边线-->
+		<div style="border: solid 2px  #FF2832;width: 100%; margin-top: 30px;"></div>
+		<!--支付信息-->
+		<div class="container" style="margin-bottom: 30px;">
+		<form action="paymoney" method="post">
+			<!--2 中间部分设计-->
+				<!--2 订单信息-->
+				
+			<div class="row" style="margin-top: 8px;">
+
+				<div style="margin:0 auto; margin-top:10px;width:950px;line-height: 100px;">
+					<div style="background: #F5F5F5;height: 100px;">
+						<span class="price">支付金额：<span id="amountStr"  amount="39.20" style="color: red;" th:inline="text">&yen;[[${sumMoney}]]</span></span>
+						<span style=" margin-left: 59px;"> </span>
+						<span class="name_c">订单号： </span>
+		         		<!--可以查订单-->
+						<span><a href="#"  th:inline="text">[[${orderCode}]]</a></span>
+					</div>
+				</div>
+			</div>
+			<!--支付方式-->
+			<div class="row" style="width:950px;margin: 0 auto;">	
+				<h5 style="margin-bottom: auto;font-size: 16px;">常用支付方式:</h5>
+				<div class="col-md-12" style="border: solid 1px #DBDBDB;height: 100px;display: inline;height: 122px;">
+				<div  class="col-md-12" style="margin-top: 20px;">																	
+						<div class="RadioStyle">
+						<input type="radio" name="Stroge" id="alipay"/>
+						<label for="alipay"><img src="/resources/img/payment/zhifubao.gif" height="40" width="140px" title="点击支付"/></label>
+						<input type="radio" name="Stroge" id="weichatpay"/>
+						<label for="weichatpay"><img src="/resources/img/payment/weixin.gif" height="40" width="140px" title="点击支付"/></label>
+						<input type="radio" name="Stroge" id="kuaiqian"/>
+						<label for="kuaiqian"><img src="/resources/img/payment/kuaiqian.gif" height="40" width="140px" title="点击支付"/></label>
+						<input type="radio" name="Stroge" id="mayihuabei"/>
+						<label for="mayihuabei"><img src="/resources/img/payment/mayihb.gif" height="40" width="140px" title="点击支付"/></label>
+						<div class="clear"></div>
+						</div>					
+				</div>
+				<div  class="row" style="height:50px;position:relative;">
+						<div style="width:200px;height:40px;position:absolute;right:0px;bottom:5px;">
+						<a href="paysuccess.html"> <input id="butt_submit"
+							value="立即购买" type="button"/>
+						</a>
+						</div>
+				</div>			
+				</div>	
+			</div>
+			
+			<!--银行及其他支付方式-->
+			<div class="row" style="width:950px;margin:0 auto;">
+			<div style="margin-top: 50px;margin-bottom: auto;font-size: 16px;">其他平台和支付银行</div>	
+			<div class="footer_nav" style="width:950px;margin-left:0px;margin-right:0px; line-height:100px;text-align:center;border: solid 1px #DBDBDB;">					
+					<a class="bank_list" href="" target="_blank" rel="nofollow">移动和包</a><span class="bank">|</span>
+					<a class="bank_list"  href="" target="_blank">工商银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank">建设银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank">农业银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank">中信银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank">兴业银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank">平安银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank">北京银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank" rel="nofollow">民生银行</a><span class="bank">|</span>
+					<a class="bank_list" href="" target="_blank">广发银行</a>
+			</div>						
+			</div>	
+		</form>
+		</div>
+		<!--边线-->
+		<div style="border: solid 2px  #FF2832;width: 100%; margin-top: 30px;"></div>
+		<!--
+        	作者：454933349@qq.com
+        	时间：2018-09-18
+        	描述：底部
+        -->
+		<div class="row">
+		<div class="col-md-12">
+			<div class="footer_nav" style=" line-height:100px; text-align:center;">
+				<a href="" target="_blank" rel="nofollow">公司简介</a><span class="sep">|</span><a
+					href="" target="_blank">诚聘英才</a><span class="sep">|</span><a
+					href="" target="_blank">手机当当</a><span class="sep">|</span><a
+					href="" target="_blank">网站联盟</a><span class="sep">|</span><a
+					href="" target="_blank">当当招商</a><span class="sep">|</span><a
+					href="" target="_blank" rel="nofollow">机构销售</a><span class="sep">|</span><a
+					href="" target="_blank">官方Blog</a>
+			</div>
+			<div class="footer_copyright" style=" line-height:50px; text-align:center;">
+				<span>Copyright (C) 当当网 2004-2017, All Rights Reserved</span>
+			</div>
+			<div class="footer_copyright" style=" line-height:30px; text-align:center;">
+					<span>京ICP证041189号</span><span class="sep">|</span><span>出版物经营许可证
+						新出发京批字第直0673号</span><span class="sep">|</span><span>食品流通许可证：SP1101011010021855(1-1)</span><br/>
+					<span>互联网药品信息服务资格证编号：(京)-非经营性-2012-0016</span><span class="sep">|</span><span>京公网安备110101000001号</span>
+				</div>
+			<!-- 有三个icon的时候加footer_icon2 -->
+			<div class="footer_icon footer_icon2" style="padding-left: 55px;">
+					<div class="validator">
+						<a></a>
+					</div>
+					<div class="validator">
+						<a><img src=""/></a>
+					</div>
+					<div class="validator">
+						<a href="" target="_blank"><img src=""/></a>
+					</div>
+					<div class="validator">
+						<a><img src=""/></a>
+					</div>
+				</div>
+		</div>
+		</div>
+		</div>
+    <script type="text/javascript" src="/resources/js/jquery.js">
+		</script>
+	<script type="text/javascript" src="/resources/js/bootstrap.js">
+		</script>	
+	<script type="text/javascript">
+
+	function refresh(){
+	  
+	    url = location.href;
+	 
+	    console.log(url);
+	    var once = url.split("#");
+	 
+	    if (once[1] != 1) {
+	 
+	        url += "#1";
+	 
+	        self.location.replace(url);
+	 
+	        window.location.reload();
+	 
+	    }
+	}
+	 
+	setTimeout('refresh()', 50);
+	  
+	
+	</script>	
+		
+			
+	</body>		 
+</html>

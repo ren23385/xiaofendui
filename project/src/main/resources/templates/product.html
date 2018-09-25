@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link href="resources/css/bootstrap3.min.css" rel="stylesheet"
+	type="text/css" />
+<link rel="icon" type="image/x-icon"
+	href="/resources/img/product/favicon.ico" />
+
+<title>图书详情</title>
+</head>
+<style type="text/css">
+#nav_operate {
+	display: inline;
+	padding-left: 10px;
+	padding-right: 6px;
+}
+
+#nav_operate a:hover {
+	color: #FF2832;
+}
+
+a {
+	color: black;
+}
+</style>
+<style>
+.demo {
+	width: 280px;
+	height: 36px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	/*padding: 0;*/
+}
+</style>
+<style type="text/css">
+#book_nav {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+#book_nav a:hover {
+	color: #FF2832;
+}
+
+a {
+	color: #000000;
+}
+
+.t1 {
+	padding-right: 25px;
+	line-height: 24px;
+}
+</style>
+<style type="text/css">
+#butt_submit {
+	height: 36px;
+	font: 16px/36px "Microsoft Yahei";
+	overflow: hidden;
+	margin: 0 0 3px 10px;
+	float: left;
+	padding: 0 15px;
+	text-align: center;
+	border-radius: 3px;
+	text-decoration: none;
+	background-color: #ff2832;
+	color: #fff;
+}
+
+.breadcrumb a {
+	font-size: 15px;
+}
+</style>
+
+<body style="background-color: #FEF7F5">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar"
+					style="padding-top: 4px; padding-bottom: 4px; padding-left: 0px; margin-left: 30px; margin-right: 30px;">
+					<div class="col-md-3" style="padding-left: 63px">
+						<img src="/resources/img/product/ddnewhead_logo.gif"
+							style="width: 180px; height: 80px;" />
+
+					</div>
+					<div class="col-md-4"></div>
+					<div class="col-md-5">
+						<div class="headoperate " id="headmenu"
+							style="text-align: center; line-height: 80px">
+							<ul class="nav_operate">
+								<li id="nav_operate"><a href="/toCart" target="_blank">购物车</a></li>
+								<li id="nav_operate"><a href="" target="_blank">我的当当</a></li>
+								<li id="nav_operate"><a href="" target="_blank">手机当当</a></li>
+								<li id="nav_operate"><a href="" target="_blank">企业销售</a></li>
+								<li id="nav_operate"><a href="" target="_blank">帮助</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!--
+    	作者：454933349@qq.com
+    	时间：2018-09-18
+    	描述：书籍类别小导航条
+    -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumb" id="book_nav" ddt-area="000"
+					style="font-size: 12px; background-color: inherit; margin-left: 30px; margin-right: 30px; padding-left: 63px">
+					<a href='' name='__Breadcrumb_pub' target='_blank' class='domain'><b>图书</b></a>
+					<span class="gt">&gt;</span><a href=' ' name='__Breadcrumb_pub'
+						target='_blank'>小说</a> <span class="gt">&gt;</span><a href=' '
+						name='__Breadcrumb_pub' target='_blank'>社会</a> <span class="gt">&gt;</span>
+					<span>橘子不是唯一的水果</span>
+				</div>
+			</div>
+		</div>
+		<!--
+        	作者：454933349@qq.com
+        	时间：2018-09-18
+        	描述：中部书籍展示区
+        -->
+		<div class="row"
+			style="margin-top: 0px; margin-left: 30px; margin-right: 15px;"
+			id="app">
+			<div class="col-md-12">
+				<form action="toAddCart" method="post"  th:object="${book}">
+				  <!-- 用来获取book_id数据 -->
+				<input type="hidden" name="id"   th:value="${book.id}"/>
+					<div class="col-md-3"
+						style="margin-left: 40px; border-right-width: 40px; margin-right: 20px;">
+
+						<!--作者：454933349@qq.com 时间：2018-09-18 描述：书籍图片 -->
+						<div style="margin-right: 10px;">
+							<img th:src="@{'/resources/bookImage/'+${book.photo}}"
+								style="width: 300px; height: 450px;" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<!--作者：454933349@qq.com 
+				时间：2018-09-18 描述：书籍描述区 -->
+						<div class="little_nav">
+							<h1 style="font-size: 20px; font-weight: bold;">
+								<span title="橘子不是唯一的水果" style="position: relative;"> <img
+									src="/resources/img/product/icon_ddzy.png"
+									style="position: relative; top: 2px; margin-bottom: 6px; margin-right: 3px;"
+									 th:text="${book.bookName}" /> 
+									 
+								</span>
+							</h1>
+							<h2 style="font-size: 16px; line-height: 24px; color: #323232">
+								<span class="head_title_name"
+									title="橘子不是唯 一的水果，你的人生，还有别的可能！张悦然、蒋方舟、任晓雯、刘瑜一致推荐的当代英国天才女作家 。一部大胆的、光芒四射的小说。就天赋与灵气而言，少有作家能与珍妮特·温特森相比！&nbsp;&nbsp;"
+									th:text="${book.descri}"> </span>
+								   
+							</h2>
+							<div style="border: dotted 1px #EBEBEB; width: 100%;"></div>
+						</div>
+						<br style="width:; color: #6C757D;" />
+						<div class="messbox_info" style="font-size: 14px;">
+							<span class="t1" id="author" dd_name="作者" ddt-area="002">作者:（英）<a
+								href=" " target="_blank" dd_name="作者" th:text="${book.author}"></a></span>
+							<span class="t1" dd_name="出版社" ddt-area="003">出版社:<a
+								href=" " target="_blank" dd_name="出版社"
+								th:text="${book.bookConcern}"></a></span> <span class="t1"
+								th:inline="text">出版时间:[[${book.publishDate}]]&nbsp;</span>
+							<!-- 评论数 -->
+							<div class="pinglun">
+								<!-- 排名 -->
+								<span class="t1" id="pubbang" style="display: none"
+									dd_name="图书排行榜排名"></span>
+								<!-- 星级 -->
+								<span class="t1"> <a href="javascript:void(0)"
+									id="comm_num_down" dd_name="评论数">29139</a>条评论
+								</span> <a href="javascript:;" class="score write_comment"
+									id="w-comment">我要写评论</a>
+							</div>
+						</div>
+						<div class="price_info"
+							style="margin-top: 10px; background-color: #ECECEC;">
+							<div style="font-size: 10px;">
+								<span>当当价</span>
+							</div>
+							<div style="font-size: 30px; color: orangered;">
+								<span style="font-size: 20px;">￥</span> <span th:inline="text">[[${book.newPrice}]]</span>
+								   <!-- 用来获取newPrice数据 -->
+									<input type="hidden" name="newPrice"   th:value="${book.newPrice}"/>
+								
+								<span style="font-size: 16px; color: #ADB5BD;">定价</span>
+								<del style="font-size: 16px; color: #ADB5BD;" th:inline="text">￥:[[${book.oldPrice}]]</del>
+							</div>
+						</div>
+						<div class="tobuy_info"
+							style="margin-bottom: auto; margin-top: 20px; float: left;">
+							<div class="add-plus-input"
+								style="float: left; border: solid 1px #D9D9D9;">
+								<a href="javascript:;" class="add btn" style="border: none;">+</a>
+								<!-- 用来获取number数据 -->
+								<input type="text" class="num" value="0" name="number"
+									style="width: 60px; height: 40px; text-align: center; border: none; background-color: #FEFEFE;" />
+								<a href="javascript:;" class="plus btn" style="border: none;">-</a>
+								   
+							</div>
+							<div style="text-align: center; float: left;">
+								
+									<input type="submit" id="butt_submit" value="加入购物车"/>
+								
+							</div>
+							<div style="text-align: center; float: left;">
+								<a href="cart.html"> <input id="butt_submit" value="立即购买"
+									type="button" style="margin-bottom: 0px;" />
+								</a>
+							</div>
+						</div>
+						<div style="border: dotted 1px #EBEBEB; width: 100%;"></div>
+						<!--
+        	作者：454933349@qq.com
+        	时间：2018-09-19
+        	描述：配送信息
+        -->
+						<div class="aera_info" style="margin-top: 80px;">
+							<div style="float: left;">
+								<div style="float: left;">
+									<span style="font-size: 16px;">配送至</span> <span
+										style="font-size: 16px;" class="demo" id="J-demo2"> </span> <span
+										style="font-size: 16px;"><a href=""
+										title="自营订单满49元（含）免运费,不足金额订单收取运费6元起" id="dd_delivery_show"
+										target="_blank" rel="nofollow">满49元免运费</a></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<!-- 作者：454933349@qq.com 时间：2018-09-18 描述：最右侧扩展信息区-->
+						<div class="extends_info"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--
+        	作者：454933349@qq.com
+        	时间：2018-09-18
+        	描述：底部
+        -->
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer_nav"
+					style="line-height: 100px; text-align: center;">
+					<a href="" target="_blank" rel="nofollow">公司简介</a><span class="sep">|</span><a
+						href="" target="_blank">诚聘英才</a><span class="sep">|</span><a
+						href="" target="_blank">手机当当</a><span class="sep">|</span><a
+						href="" target="_blank">网站联盟</a><span class="sep">|</span><a
+						href="" target="_blank">当当招商</a><span class="sep">|</span><a
+						href="" target="_blank" rel="nofollow">机构销售</a><span class="sep">|</span><a
+						href="" target="_blank">官方Blog</a>
+				</div>
+				<div class="footer_copyright"
+					style="line-height: 50px; text-align: center;">
+					<span>Copyright (C) 当当网 2004-2017, All Rights Reserved</span>
+				</div>
+				<div class="footer_copyright"
+					style="line-height: 30px; text-align: center;">
+					<span>京ICP证041189号</span><span class="sep">|</span><span>出版物经营许可证
+						新出发京批字第直0673号</span><span class="sep">|</span><span>食品流通许可证：SP1101011010021855(1-1)</span><br />
+					<span>互联网药品信息服务资格证编号：(京)-非经营性-2012-0016</span><span class="sep">|</span><span>京公网安备110101000001号</span>
+				</div>
+				<!-- 有三个icon的时候加footer_icon2 -->
+				<div class="footer_icon footer_icon2" style="padding-left: 55px;">
+					<div class="validator">
+						<a></a>
+					</div>
+					<div class="validator">
+						<a><img src="" /></a>
+					</div>
+					<div class="validator">
+						<a href="" target="_blank"><img src="" /></a>
+					</div>
+					<div class="validator">
+						<a><img src="" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
+		</script>
+	<script type="text/javascript" src="/resources/js/bootstrap.js">
+		</script>
+	<script type="text/javascript" src="/resources/js/city.js"></script>
+	<script type="text/javascript" src="/resources/js/vue/dist/vue.min.js">
+	</script>
+	<script type="text/javascript"
+		src="/resources/js/axios/dist/axios.min.js">
+	</script>
+	<!-- 利用vue拿数据 -->
+	<!-- <script type="text/javascript">
+
+    var vue=new Vue({
+      el:'#app',
+      data:{
+        book:{}
+          },
+      methods:{
+        getBookInfo:function(){
+
+    axios.post("getBookInfo").then(function(response){
+
+        if(response.data){
+
+            vue.book=response.data.book;
+
+              }
+        
+ 
+
+
+    }).catch(function(error){
+
+
+
+
+        });
+
+
+            }
+         
+
+          }
+
+
+        });
+
+    vue.getBookInfo();
+
+
+
+	</script> -->
+
+
+
+
+	<script type="text/javascript">
+$(function() {
+	$(".add-plus-input .add").click(function() {
+var $num = $(this).next(".num");
+var number = $num.attr("value");
+$num.attr("value",parseInt(number) + 1);
+});
+$(".add-plus-input .plus").click(function() {
+var $num = $(this).prev(".num");
+var number = $num.attr("value");
+if(number>1)
+	{
+$num.attr("value",parseInt(number) - 1);
+
+	}
+});
+})
+</script>
+	<script>
+		var ylc = yeluochenCity('J-demo', (city) => {console.log(city)}, null);
+		console.log(ylc);
+		var ylc2 = yeluochenCity('J-demo2', (city) => {console.log(city)}, {
+			province: '四川',
+			city: '成都',
+			district: '成化区'
+		});
+		console.log(ylc2);
+	</script>
+</body>
+</html>

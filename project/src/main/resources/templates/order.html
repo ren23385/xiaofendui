@@ -1,188 +1,307 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" href="/resources/css/bootstrap.css" type="text/css" />
-		<script src="/resources/js/jquery-1.11.3.min.js" type="text/javascript"></script>
-		<script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
-		<!-- 引入自定义css文件 style.css -->
-		<link rel="stylesheet" href="/resources/css/style.css" type="text/css" />
-		<style>
-			body {
-				margin-top: 20px;
-				margin: 0 auto;
-			}
-			
-			.carousel-inner .item img {
-				width: 100%;
-				height: 300px;
-			}
-		</style>
-	</head>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link rel="stylesheet" href="/resources/css/bootstrap.css"
+	type="text/css" />
+<!-- 引入自定义css文件 style.css -->
+<link rel="stylesheet" href="/resources/css/style.css" type="text/css" />
+<style>
+body {
+	margin-top: 20px;
+	margin: 0 auto;
+}
 
-	<body>
-		<!--1 购物车项头顶设计-->
-		<div class="container">
+.carousel-inner .item img {
+	width: 100%;
+	height: 300px;
+}
+.borderColor:{
 
-			<div class="row">
-				<div class="col-md-12">
-					<div style="margin-top: 10px;padding-left:90px ;">
+border: solid 2px #FF2832;
 
-						<!--<img class="pic_shop" src="img/cart/pic_myshopping.gif" />-->
-						<img src="/resources/img/order/dingdan.png" />
+}
+</style>
+</head>
 
-						<span style="margin-left: 50px;">
-							<img src="/resources/img/order/dingdan2.png" style="width: 650px;"/>
-							</span>
-					</div>
+<body>
+	<!--1 购物车项头顶设计-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div style="margin-top: 10px; padding-left: 90px;">
+
+					<img src="/resources/img/order/dingdan.png" /> <span
+						style="margin-left: 50px;"> <img
+						src="/resources/img/order/dingdan2.png" style="width: 650px;" />
+					</span>
 				</div>
 			</div>
 		</div>
-		<!--边线-->
-		<div style="border: solid 2px  #FF2832;width: 100%; margin-top: 30px;"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12" style="margin-top: 10px;padding-left:90px ;font-size: 20px;">
-					收货人信息
-
+	</div>
+	<!--边线-->
+	<div style="border: solid 2px #FF2832; width: 100%; margin-top: 30px;"></div>
+	<div class="container"  id="app">
+		<div class="row">
+			<div class="col-md-12" style="margin-top: 10px; padding-left: 90px;" id="address" v-on:click="doThis()">
+				<span style="font-size: 18px" >收货人信息:</span><br/>
+				<div v-for="address in listAddress"  style="float: left;border: solid 2px #E6E4E2;width: 200px;height: 100px;list-style: none;padding: 5px;background: #FBFBFB;margin-left: 10px" class="divClass">
+			    <!-- <input type="hidden" id="addressId" v-bind:value="address.id"/> -->
+				<li>收货人:  {{address.personName}}</li>
+				<li>收获地址:  {{address.address}}</li>
+				<li>收货人电话: {{address.mobile}}</li>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12" style="margin-top: 10px;padding-left:90px ;">
-					<button type="button" data-toggle="modal" data-target="#exampleModal">
-                                                            新增收货地址+
-                    </button>
-
-				</div>
-			</div>
-
-			<div class="row">
-				<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
-					<strong>订单详情</strong>
-					<table class="table table-bordered">
-						<tbody>
-							<tr class="warning">
-								<th colspan="5">订单编号:9005</th>
-							</tr>
-							<tr class="warning">
-								<th>图片</th>
-								<th>商品</th>
-								<th>价格</th>
-								<th>数量</th>
-								<th>小计</th>
-							</tr>
-							<tr class="active">
-								<td  width="40%"><input type="hidden" name="id" value="22"> <img src="/resources/img/order/dadonggua.jpg" width="70" height="60"></td>
-								<td width="30%">
-									<a target="_blank"> 有机蔬菜 大冬瓜...</a>
-								</td>
-								<td width="20%">￥298.00</td>
-								<td width="10%">5</td>
-								<td width="15%"><span class="subtotal">￥596.00</span></td>
-							</tr>
-							<tr class="active">
-								<td  width="40%"><input type="hidden" name="id" value="22"> <img src="/resources/img/order/dadonggua.jpg" width="70" height="60"></td>
-								<td width="30%">
-									<a target="_blank"> 有机蔬菜 大冬瓜...</a>
-								</td>
-								<td width="20%">￥298.00</td>
-								<td width="10%">5</td>
-								<td width="15%"><span class="subtotal">￥596.00</span></td>
-							</tr>
-							<tr class="active">
-								<td width="40%"><input type="hidden" name="id" value="22"> <img src="/resources/img/order/dadonggua.jpg" width="70" height="60"></td>
-								<td width="30%">
-									<a target="_blank"> 有机蔬菜 大冬瓜...</a>
-								</td>
-								<td width="20%">￥298.00</td>
-								<td width="10%">5</td>
-								<td width="15%"><span class="subtotal">￥596.00</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<div style="text-align: right; margin-right: 120px;padding-left:90px ;">
-					商品金额: <strong style="color: #ff6600;">￥596.00元</strong>
-				</div>
-
-			</div>
-			<hr />
-			<p style="text-align: right; margin-right: 100px;">
-				<a href="javascript:document.getElementById('orderForm').submit();" class="zhifu">
-					<img src="/resources/img/order/zhifu.png" width="110" height="38" border="0" />
-				</a>
-			</p>
-
 		</div>
-		<!--下边线-->
-		<div style="border: solid 1px  #FF2832;width: 100%; margin-top: 30px;"></div>
+		<div class="row">
+			<div class="col-md-12" style="margin-top: 10px; padding-left: 90px;">
+				<button type="button" data-toggle="modal"
+					data-target="#exampleModal">新增收货地址+</button>
 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12" style="text-align: center;line-height: none;">
+			</div>
+		</div>
 
-					<div class="footer_copyright"><span>Copyright (C) 当当网 2004-2014, All Rights Reserved</span>
-						<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001051000098" target="_blank" class="footer_img" rel="nofollow"><img src="//img60.ddimg.cn/upload_img/00459/index/validate.gif"></a><span><a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">京ICP证041189号</a></span><span>出版物经营许可证&nbsp;新出发京批字第直0673号</span></div>
+		<div class="row" >
+			<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
+				<strong>订单详情</strong>
+				<table class="table table-bordered">
+					<tbody>
+						<tr class="warning">
+							<th colspan="5">以下商品 预计2018年9月24日送达 运费:0.00</th>
+						</tr>
+						<tr class="warning">
+							<th>图片</th>
+							<th>商品</th>
+							<th>价格</th>
+							<th>数量</th>
+							<th>小计</th>
+						</tr>
+						<tr class="active" v-for="cart in list">
+							<td width="20%"><input type="hidden" name="id" v-bind:value="cart.id" />
+								<img v-bind:src="'/resources/bookImage/'+cart.book.photo"
+								height="70px" width="80px" /></td>
+							<td width="28%"><a target="_blank">
+									{{cart.book.bookName}}</a></td>
+							<td width="14%">￥{{cart.price}}</td>
+							<td width="15%">
+                              {{cart.orderNumn}}
+							</td>
+							<td width="13%"><span class="subtotal" >￥{{cart.sumPrice}}</span></td>
+							
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+            
+		</div>
+		 <div class="row" style="margin-left: 900px" >
+			<div>
+				<font style="text-align: right;">商品金额: <strong style="color: #ff6600;" >￥ {{sumMoney}}元</strong></font>
+			    <input id="sumMoney" type="hidden"  v-bind:value="sumMoney"/>
+			</div>
+            </div>
+		<hr />
+		<p style="text-align: right; margin-right: 100px;">
+			<a href="/toPayMoney" 
+				class="zhifu"> <img src="/resources/img/order/zhifu.png" id="submitOrder"
+				width="110" height="38" border="0" />
+			</a>
+		</p>
+
+	
+	</div>
+	<!--下边线-->
+	<div style="border: solid 1px #FF2832; width: 100%; margin-top: 30px;"></div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12" style="text-align: center; line-height: none;">
+
+				<div class="footer_copyright">
+					<span>Copyright (C) 当当网 2004-2014, All Rights Reserved</span> <a
+						href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001051000098"
+						target="_blank" class="footer_img" rel="nofollow"><img
+						src="//img60.ddimg.cn/upload_img/00459/index/validate.gif" /></a><span><a
+						href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">京ICP证041189号</a></span><span>出版物经营许可证&nbsp;新出发京批字第直0673号</span>
 				</div>
 			</div>
+		</div>
 
-			<!--3 模态框-->
+		<!--3 模态框-->
 
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">新增收货地址</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-						</div>
-						<div class="modal-body">
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">新增收货地址</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" >
 
-							<form action="#">
-								<div class="form-group row">
-									<label for="Consignee" class="col-sm-3 col-form-label">收货人:</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="Consignee" name="name">
-									</div>
+						<form action="/addAddress" method="post">
+							<div class="form-group row">
+								<label for="name" class="col-sm-3 col-form-label">收货人:</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="name"
+										name="personName" />
 								</div>
-								<div class="form-group row">
-									<label for="photo" class="col-sm-3 col-form-label">手机号:</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="photo" name="photo">
-									</div>
+							</div>
+							<div class="form-group row">
+								<label for="mobile" class="col-sm-3 col-form-label">手机号:</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="mobile" name="mobile" />
 								</div>
-								<div class="form-group row">
-									<label for="manadress" class="col-sm-3 col-form-label">收货地址:</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="manadress" name="adress">
-									</div>
+							</div>
+							<div class="form-group row">
+								<label for="manadress" class="col-sm-3 col-form-label">收货地址:</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="manadress"
+										name="address" />
 								</div>
-								<div class="form-group row">
-									<label for="code" class="col-sm-3 col-form-label">邮编:</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="code" name="code">
-									</div>
+							</div>
+							<div class="form-group row">
+								<label for="code" class="col-sm-3 col-form-label">邮编:</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="code" name="code" />
 								</div>
+							</div>
 
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger">确认收货地址</button>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+							<div class="modal-footer">
+								<input type="submit" class="btn btn-danger" value="确认收货地址"/>
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">取消</button>
 
-								</div>
+							</div>
 
-							</form>
-
-						</div>
+						</form>
 
 					</div>
+
 				</div>
 			</div>
+		</div>
+		
+	</div>
+	
+  <script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
+		</script>
+	<script type="text/javascript" src="/resources/js/bootstrap.js">
+		</script>
+	<script type="text/javascript" src="/resources/js/city.js"></script>
+	<script type="text/javascript" src="/resources/js/vue/dist/vue.min.js">
+	</script>
+	<script type="text/javascript"
+		src="/resources/js/axios/dist/axios.min.js">
+	</script>	
+	<!-- 利用vue获取购物车数据 -->
+	<script type="text/javascript">
+	var sumMoney=0.0;
+     var vue=new Vue({
+         el:'#app',
+         data:{
+             list:{},
+             sumMoney:0.0,
+             listAddress:{}
+             },
+         methods:{
+            
+           getList:function(){
 
-	</body>
+            axios.post("/toOrderItem").then(function(response){
+
+               if(response.data){
+
+                   vue.list=response.data.list;
+                   vue.sumMoney=response.data.sumMoney;
+                   vue.listAddress=response.data.listAddress;
+                   }
+                
+
+                }).catch(function(error){
+
+
+                    });
+
+               },
+               doThis:function(){
+
+                      
+               $("#address .divClass").css("border","solid 2px #FF2832");
+
+                   }
+                   
+            
+             
+
+             }/* ,
+             updated:function(){
+            	sumMoney=$("#sumMoney").val();
+                alert(sumMoney)
+             // console.log(sumMoney);
+                 }   */
+         
+     
+
+
+
+
+         });
+     
+
+     vue.getList();
+
+
+	</script>
+	
+	
+	
+	<script type="text/javascript">
+	 var arr=[];
+	 var sumMoney=0.0;
+     $("#submitOrder").click(function(){
+    	  /*  //取消超级链接的默认行为
+    	  	event.preventDefault(); */
+    	         
+    	 
+      $("input[name='id']").each(function(){
+          	arr.push($(this).attr('value'));
+   
+          });
+     sumMoney=$("#sumMoney").val();
+      $.ajax({
+          type : "POST",
+          url : "/toAddOrder",
+          dataType : "json",
+          traditional : true,
+          data : {
+                 arr: arr,
+                 sumMoney:sumMoney
+                 },
+          /*  success:function(){
+           window.open("/toPayMoney");
+
+               }      */   
+          
+      });
+      
+     }); 
+    //  $(".zhifu").attr("href","/toPayMoney")
+   
+
+
+
+
+	</script>
+	
+	
+</body>
 
 </html>
