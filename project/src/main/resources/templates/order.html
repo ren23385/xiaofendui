@@ -45,13 +45,15 @@ border: solid 2px #FF2832;
 	<div style="border: solid 2px #FF2832; width: 100%; margin-top: 30px;"></div>
 	<div class="container"  id="app">
 		<div class="row">
-			<div class="col-md-12" style="margin-top: 10px; padding-left: 90px;" id="address" v-on:click="doThis()">
+			<div class="col-md-12" style="margin-top: 10px; padding-left: 90px;"  >
 				<span style="font-size: 18px" >收货人信息:</span><br/>
-				<div v-for="address in listAddress"  style="float: left;border: solid 2px #E6E4E2;width: 200px;height: 100px;list-style: none;padding: 5px;background: #FBFBFB;margin-left: 10px" class="divClass">
-			    <!-- <input type="hidden" id="addressId" v-bind:value="address.id"/> -->
+				<div v-for="address in listAddress"    style="border: solid 2px #E6E4E2;width: 200px;height: 110px;float: left;list-style: none;padding: 5px;background: #FBFBFB;margin-left: 10px" >
+			   <input type="checkbox"  v-on:click="getAddress(address.id)" />
+			    <div class="divClass">
 				<li>收货人:  {{address.personName}}</li>
 				<li>收获地址:  {{address.address}}</li>
 				<li>收货人电话: {{address.mobile}}</li>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -193,8 +195,8 @@ border: solid 2px #FF2832;
 	
   <script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
 		</script>
-	<script type="text/javascript" src="/resources/js/bootstrap.js">
-		</script>
+	<script type="text/javascript" src="/resources/js/common/bootstrap.min.js">
+	</script>
 	<script type="text/javascript" src="/resources/js/city.js"></script>
 	<script type="text/javascript" src="/resources/js/vue/dist/vue.min.js">
 	</script>
@@ -203,7 +205,8 @@ border: solid 2px #FF2832;
 	</script>	
 	<!-- 利用vue获取购物车数据 -->
 	<script type="text/javascript">
-	var sumMoney=0.0;
+	//var sumMoney=0.0;
+	var addressId=0;
      var vue=new Vue({
          el:'#app',
          data:{
@@ -231,12 +234,15 @@ border: solid 2px #FF2832;
                     });
 
                },
-               doThis:function(){
+               getAddress:function(id){
 
-                      
-               $("#address .divClass").css("border","solid 2px #FF2832");
+                alert(id);
 
-                   }
+                // 记住收货地址id
+                addressId=id;
+                
+
+                 }   
                    
             
              
@@ -267,9 +273,13 @@ border: solid 2px #FF2832;
 	 var arr=[];
 	 var sumMoney=0.0;
      $("#submitOrder").click(function(){
-    	  /*  //取消超级链接的默认行为
-    	  	event.preventDefault(); */
-    	         
+         
+    	 if(addressId==0){
+        alert("请选择收货地址");
+          //取消超级链接的默认行为
+    	   event.preventDefault();
+          return ;
+        	 }        
     	 
       $("input[name='id']").each(function(){
           	arr.push($(this).attr('value'));
@@ -283,12 +293,9 @@ border: solid 2px #FF2832;
           traditional : true,
           data : {
                  arr: arr,
-                 sumMoney:sumMoney
-                 },
-          /*  success:function(){
-           window.open("/toPayMoney");
-
-               }      */   
+                 sumMoney:sumMoney,
+                 addressId:addressId
+                 }
           
       });
       

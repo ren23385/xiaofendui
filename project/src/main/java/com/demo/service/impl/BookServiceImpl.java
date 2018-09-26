@@ -7,7 +7,7 @@ import com.demo.mapper.BookMapper;
 import com.demo.model.Book;
 import com.demo.service.BookService;
 
-@Service
+@Service("service")
 public class BookServiceImpl implements BookService {
 @Autowired	
  private BookMapper bookMapper;

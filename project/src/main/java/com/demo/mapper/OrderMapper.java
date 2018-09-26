@@ -17,7 +17,7 @@ public interface OrderMapper {
 	int addAddress(Address address);
     @Select("select * from address where user_id=#{id}")
 	List<Address> findAddressById(int id);
-    @Insert("insert into order_from(id,totallPrice,user_id) values(#{id},#{totallPrice},#{user_id})")
+    @Insert("insert into order_from(id,totallPrice,user_id,addressId) values(#{id},#{totallPrice},#{user_id},#{addressId})")
 	int addOrder(Order order);
 	
 	

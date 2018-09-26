@@ -72,11 +72,5 @@ public class ShoppingCart implements Serializable{
 		this.book_id = book_id;
 	}
 
-	@Override
-	public String toString() {
-		return "ShoppingCart [id=" + id + ", orderName=" + book_id + ", price=" + price + ", orderNumn=" + orderNumn
-				+ ", sumPrice=" + sumPrice + ", user_id=" + user_id + "]";
-	}
-	
 	
 }

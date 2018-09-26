@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.demo.model.Book;
 import com.demo.service.BookService;
 
-@Controller
+//@Controller
 public class BookController {
     @Autowired
 	private BookService bookService;

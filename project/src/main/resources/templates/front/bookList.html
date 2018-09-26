@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="resources/css/common/bootstrap.min.css" />
+<link rel="stylesheet" href="resources/css/common/nav.css" />
+<link rel="stylesheet" href="resources/css/common/index.css" />
+<link rel="stylesheet" href="resources/css/front/productShow.css" />
+<script type="text/javascript" src="resources/js/common/jquery.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/common/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/common/vue.min.js"></script>
+<script type="text/javascript" src="resources/js/common/axios.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body style="background-color: #FEF7F5;">
+	<div class="container-fluid" style="border: hidden; margin: 0px;"
+		id="app">
+		<!-- 头部 -->
+		<div class="card-header" style="padding: 0px;">
+			<div class="col-md-12" style="padding: 0px;">
+				<div th:replace="common/nav::nav"></div>
+			</div>
+		</div>
+
+		<!-- 中部 -->
+		<div class="card-body col-12"
+			style="height: 1250px; padding-top: 10px; margin-left: 0px;">
+			<!-- 小分类 -->
+			<div class="card-header" style="height: 100px;">
+				<div class="sub" id="nav">
+					<ul>
+						<template v-if="!singleTypes || !singleTypes.length">
+						<div class="book_cate">
+							<a href="#">暂无数据</a>
+						</div>
+						</template>
+						<template v-else="">
+						<div v-for="singleType in singleTypes" v-key="">
+							<li><input id="single" type="hidden" v-model="singleType.id"
+								name="singleType" /> <a name="nav2"
+								v-bind:href="'toBookList?singleType='+singleType.id"
+								v-on:click.prevent="onSingleClick">{{singleType.bookType}}</a></li>
+						</div>
+						</template>
+					</ul>
+
+				</div>
+				<!--  -->
+			</div>
+
+			<!-- 展示 -->
+			<div class="card-body"
+				style="height: 200px; padding-top: 2px; margin-left: 0px;">
+				<table class="table table-bordered">
+					<tbody>
+						<template v-if="!pageInfo.list || !pageInfo.list.length">
+						<tr>
+							<td colspan="9">无数据</td>
+						</tr>
+						</template>
+
+						<template v-else="">
+
+						<ul class="row card-group" v-for="book in pageInfo.list"
+							style="padding-left: 0px; margin-bottom: 0px;">
+
+
+
+							<div class="books "
+								style="background-color: #F6EFED; padding-left: 11px">
+								<li style="list-style: none">
+									<div class="books-">
+										<div style="margin-right: 0px">
+											<input type="hidden" id="book_id" v-model="book.id" /> <a
+												href="#"> <img class="books-img"
+												v-bind:src="'/resources/bookImage/'+book.photo" alt="图书列表"  v-on:click="getProduct(book.id)"/></a>
+										</div>
+										<div class="books-bottom" style="margin-left: 120px">
+											<ul>
+												<li><a href="#">{{book.bookName}}</a></li>
+												<li>作 者：<a href="#">{{book.author}}</a> 著
+												</li>
+												<li>出版社：<a href="#">{{book.bookConcern}}</a></li>
+												<li>出版时间：{{book.publishDate}}</li>
+												<li>{{book.descri}}</li>
+												<a href="#"> <img class="books-bottom-img1"
+													alt="shopping"
+													src="resources/img/common/product_buy_01.gif"  v-on:click="getProduct(book.id)"/>
+												</a>
+												<a href="#"> <img class="books-bottom-img2"
+													src="resources/img/common/product_buy_02.gif"
+													alt="shopping" />
+												</a>
+												<span class="books-bottom-price" style="color: red;">￥：{{book.newPrice}}</span>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</div>
+						</ul>
+						</template>
+					</tbody>
+				</table>
+			</div>
+
+			<!-- 页码 -->
+			<div class="text-muted page">
+				<nav aria-label="..." class="pageNum">
+					<ul class="pagination" style="padding-left: 180px; margin-top: 0px">
+
+						<!-- 前一页 -->
+						<li class="disabled" v-if="pageInfo.isFirstPage"><a
+							href="javascript:void(0)" class="page-link">&laquo;</a></li>
+
+						<li class="page-item"><a
+							v-bind:href="'toBookList?pageNo='+pageInfo.prePage"
+							class="page-link" v-if="!pageInfo.isFirstPage"> &laquo;</a></li>
+
+
+						<!-- 最多显示8个链接 -->
+						<li class="page-item" v-for="pi in pageInfo.navigatepageNums"
+							v-bind:class="pi==pageInfo.pageNum?'page-item active':'page-item'">
+							<a v-bind:href="'toBookList?pageNo='+pi" class="page-link">{{pi}}</a>
+						</li>
+
+						<!-- javascript:void(0)就是取消超级链接的默认行为方式-->
+						<li class="disabled" v-if="pageInfo.isLastPage"><a
+							href="javascript:void(0)" class="page-link">&raquo;</a></li>
+						<li class="page-item" v-if="!pageInfo.isLastPage"><a
+							v-bind:href="'toBookList?pageNo='+pageInfo.nextPage"
+							class="page-link">&raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
+
+
+		</div>
+
+		<!-- 底部 -->
+		<div class="card-footer text-muted"
+			style="position: relative; bottom: 10px;">
+			<div th:replace="common/footer::footer"></div>
+		</div>
+		<!-- 结束 -->
+	</div>
+
+	<!-- 取数据 -->
+	<script type="text/javascript">
+	var app = new Vue({
+		el:"#app",
+		data:{
+			//设置默认值
+			totalTypes:{
+			},
+			pageInfo:{
+				pageNum:""
+				},
+			book:"",
+			singleTypes:{
+			}
+		},
+		created(){
+			this.getData()
+			
+		},
+		methods:{
+
+			/* 日期格式化 */
+				/* <![CDATA[ */
+			    parseTime:function(d) {  //时间格式
+      			var month='',date='',hours='',minutes='',seconds='';
+     			if((d.getMonth()+1)<10){ month = '0' + (d.getMonth()+1); }else{ month = (d.getMonth())+1; }
+      			if(d.getDate()<10){ date = '0' + d.getDate() }else{ date = d.getDate() }
+      			if(d.getHours()<10){ hours = '0' + d.getHours() }else{ hours = d.getHours() }
+      			if(d.getMinutes()<10){ minutes = '0' + d.getMinutes() }else{ minutes = d.getMinutes() }
+      			if(d.getSeconds()<10){ seconds = '0' + d.getSeconds() }else{ seconds = d.getSeconds() }
+      			const newDate = d.getFullYear() + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds;
+      			return newDate;
+      			/* ]]>     */
+   	 			},
+               
+
+			
+			/* 获取地址栏里的参数 */
+			getParameter:function(name){
+				/* <![CDATA[ */
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r!=null){
+					return unescape(r[2]);
+				}
+				/* ]]>     */
+				return null;
+			},
+			getInfo:function(){
+				var ret =  this.getParameter("totalType");
+				var ret1 =  this.getParameter("singleType");
+				if(ret1 != null){
+					ret1 = ret1;
+				}else{
+					ret1 = 1;
+				}
+				
+
+				
+				if(ret != null){
+					ret = ret;
+				}else{
+					ret = 1;
+				}
+				
+				
+				var pageNo = this.getParameter("pageNo");
+				/* <![CDATA[ */
+				if(pageNo != null && pageNo.toString().length>1){
+						pageNo = pageNo;
+				}else{
+						pageNo = 1;
+				}
+				
+				
+				
+			    let obj = {
+			    	getSingleTypes:axios.post("singleTypes?totalType="+ret),
+			       	getTotalTypes:axios.post("totalTypes"),
+			      	getPageInfo:axios.post("bookList?totalType="+ret+"&pageNo="+pageNo),
+			      
+			    }
+			    /* ]]>     */
+		   		return obj
+			},	
+			getData:function(){
+				/* <![CDATA[ */
+				let _this = this;
+				
+				axios.all([ _this.getInfo().getTotalTypes, _this.getInfo().getPageInfo,_this.getInfo().getSingleTypes])
+				.then(axios.spread(function (acct,page,single) {
+
+					_this.totalTypes = acct.data.totalTypes;
+
+					_this.pageInfo = page.data.pageInfo;
+
+					 pageNum=page.data.pageInfo.pageNum;
+
+					 _this.singleTypes = single.data.singleTypes;
+						
+
+			 	})).catch(function(error){
+
+				});
+			},
+			onSingleClick:function(event){
+				var a = $("#single").val();
+				var ret2 = window.location.href+"&singleType="+a;
+				window.location.href = ret2;
+				
+			},
+			
+			getProduct:function(id){
+              window.location.href="/toProduct?id="+id;
+			}
+		}
+		  /* ]]>     */
+	});
+	</script>
+</body>
+</html>

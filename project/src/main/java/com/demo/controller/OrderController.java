@@ -105,7 +105,13 @@ public class OrderController {
 		}
 		
 		
-		
+		@RequestMapping("/getOrderList")
+		public String getOrderList() {
+			
+			
+			
+			return "orderList";
+		}
 		
 		
 		

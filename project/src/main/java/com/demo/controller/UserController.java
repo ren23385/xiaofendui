@@ -45,7 +45,7 @@ public class UserController {
 		return "login";	
 		}
 		session.setAttribute("user", admin);
-		return "redirect:/toProduct";
+		return "index";
 
 	}
 

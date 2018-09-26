@@ -9,25 +9,21 @@ public class Order implements Serializable{
 	private double totallPrice;
 	private int user_id;
 	private int orderStatus;
+	private int addressId;
 	public Order() {
 		
 	}
 	
 	
-	public Order(String id, double totallPrice, int user_id) {
+	public Order(String id, double totallPrice, int user_id, int addressId2) {
 		super();
 		this.id = id;
 		this.totallPrice = totallPrice;
 		this.user_id = user_id;
+		this.addressId=addressId2;
 	}
 
 
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public double getTotallPrice() {
 		return totallPrice;
 	}
@@ -46,17 +42,26 @@ public class Order implements Serializable{
 	public void setOrderStatus(int orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public Order(double totallPrice, int user_id, int orderStatus) {
-		super();
-		this.totallPrice = totallPrice;
-		this.user_id = user_id;
-		this.orderStatus = orderStatus;
+
+
+	public String getId() {
+		return id;
 	}
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", totallPrice=" + totallPrice + ", user_id=" + user_id + ", orderStatus="
-				+ orderStatus + "]";
-	}	
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public int getAddressId() {
+		return addressId;
+	}
+
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
 	
 	
 }

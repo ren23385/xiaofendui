@@ -10,7 +10,7 @@ public class Book implements Serializable{
 	private String bookName;
 	private String author;
 	private String bookConcern;
-	private String publishDate;
+	private Date publishDate;
 	private int page;
 	private double oldPrice;
 	private double newPrice;
@@ -47,10 +47,10 @@ public class Book implements Serializable{
 	public void setBookConcern(String bookConcern) {
 		this.bookConcern = bookConcern;
 	}
-	public String getPublishDate() {
+	public Date getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(String publishDate) {
+	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
 	public int getPage() {
@@ -101,31 +101,6 @@ public class Book implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public Book(String bookName, String author, String bookConcern, String publishDate, int page, double oldPrice,
-			double newPrice, double prixPrice, int bookToallType_id, int bookSingleType_id, String descri,
-			String photo) {
-		super();
-		this.bookName = bookName;
-		this.author = author;
-		this.bookConcern = bookConcern;
-		this.publishDate = publishDate;
-		this.page = page;
-		this.oldPrice = oldPrice;
-		this.newPrice = newPrice;
-		this.prixPrice = prixPrice;
-		this.bookToallType_id = bookToallType_id;
-		this.bookSingleType_id = bookSingleType_id;
-		this.descri = descri;
-		this.photo = photo;
-	}
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", bookName=" + bookName + ", author=" + author + ", bookConcern=" + bookConcern
-				+ ", publishDate=" + publishDate + ", page=" + page + ", oldPrice=" + oldPrice + ", newPrice="
-				+ newPrice + ", prixPrice=" + prixPrice + ", bookToallType_id=" + bookToallType_id
-				+ ", bookSingleType_id=" + bookSingleType_id + ", descri=" + descri + ", photo=" + photo + "]";
-	}
-	
 	
 	
 }

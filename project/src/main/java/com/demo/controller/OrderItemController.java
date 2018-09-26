@@ -33,7 +33,7 @@ public class OrderItemController {
 	// 把在订单中的订单项插入数据库
 	@RequestMapping("/toAddOrder")
 	public  void addOrderItem(@RequestParam(name = "arr") int[] arr,
-			@RequestParam(name = "sumMoney", required = false) double sumMoney, HttpSession session) {
+			@RequestParam(name = "sumMoney", required = false) double sumMoney,@RequestParam(name="addressId") int addressId, HttpSession session) {
 		// 插入订单项
 		orderItemService.addOrderItem(arr);
 		User user = (User) session.getAttribute("user");
@@ -45,7 +45,7 @@ public class OrderItemController {
 		this.sumMoney=sumMoney;
 		// user_id
 		int id2 = user.getId();
-		Order order = new Order(orderCode, sumMoney, id2);
+		Order order = new Order(orderCode, sumMoney, id2,addressId);
 		int res = orderService.addOrder(order);
 		
 

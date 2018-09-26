@@ -1,0 +1,104 @@
+.sub ul li{
+	float: left;
+    padding: 0 15px;
+    margin-left: -1px;
+    white-space: nowrap;
+    list-style: none;
+	background: url(../img/bookList/sub_line_bg.png) right center no-repeat;
+}
+.sub ul{
+	height: 31px;
+    margin: 0 auto;
+    overflow: hidden;
+    line-height: 30px;
+    width: 1200px
+}
+.sub{
+    background: #f5f5f5;
+    float: none;
+    width: auto;
+}
+
+/* Êé¼®Õ¹Ê¾*/
+.sort a{
+	margin-left: 100px;
+}
+
+
+.books{
+	background-color: red;
+	width:98%;
+	/* margin-top: 5px; */
+	padding-top:0px;
+	padding-bottom:5px;
+	margin-left: 1%;
+	
+}
+.books-{
+	width:98%;
+	height:200px;
+	background-color:white;
+	display: flex;
+	margin-left:1%;
+	margin-right:1%;
+	/* margin-bottom:10px; */
+	border-radius: 2px;
+}
+.books-img{
+	width:140px;
+	height:180px;
+	margin-top:10px;
+	margin-left:20px;
+	border-radius: 3px;
+}
+.books-bottom{
+	width:500px;
+	height:100%;
+	margin-left:30%;
+	position: relative;
+	font-size: 14px;
+	padding-top:10px;
+}
+.books-bottom li{
+	list-style-type: none;
+	margin-left:-40px;
+}
+.books-bottom img{
+	position: absolute;
+	bottom:10px;
+	cursor: pointer;
+}
+.books-bottom-img1{
+	left:80px;
+}
+.books-bottom-img2{
+	left:160px;
+}
+.books-bottom-price{
+	position: absolute;
+	bottom:8px;
+	left:0px;
+	font-size: 18px;
+}
+
+/* Ò³Âë */
+.page{
+	position: absolute;
+	bottom: 10px;
+	border-bottom-color: red;
+	border-width: 2px;
+	
+    right: 0px;
+    left: 0px;
+    top: 1150px;
+    height: 60px;
+   
+	
+}
+
+.pageNum{
+	position: relative;
+	padding-top: 10px;
+	padding-left: 30%;
+}
+

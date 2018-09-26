@@ -1,0 +1,177 @@
+@charset "utf-8";
+
+
+/* 主页  */
+.central_left{
+	position:relative;
+	float:left;
+    top: 0px;
+    margin-top: 10px;
+    left: 0px;
+
+	
+}
+
+.book_sort{
+    border:solid 1px #999;
+    margin-bottom:10px;
+    width: 100%
+    margin-left:50px;
+}
+.book_sort_bg{
+    background-color:#fff0d9;
+    padding-left:10px;
+    color:#882D00;
+    font-size:14px;
+    height:40px;
+    font-weight:bold;
+    line-height:30px;
+}
+.book_sort_bottom{
+    margin:0px 10px 0px 10px;
+    line-height:25px;
+    border-bottom:solid 1px #666;
+}
+.book_cate{
+    padding:10px 0px 0px 10px;
+    font-weight:bold;
+}
+/* 中部右侧*/
+.central_center{
+	position: relative;
+	top:0px;
+	float:left;
+}
+.lunpo{
+	margin-top: 10px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+/* 最新上架 */
+.newbooks{
+	height: 400px;
+}
+
+.book_new{
+    background-image:url(/resources/img/common/bookbg.jpg;);
+    background-repeat:repeat-x;
+    height:25px;
+    line-height:30px;
+    clear:both;
+}
+.book_left{
+    margin:0px 50px 0px 10px;
+    color:#882D00;
+    font-size:14px;
+    font-weight:bold;
+    float:left;
+}
+
+.book_right{
+    float:right;
+    margin-right:2px;
+}
+
+.card-deck{
+	margin-left: 0px;
+}
+
+.card{
+	width: 160px;
+	margin-left: 0px;
+	border: 0;
+	background-color: #FEF7F5;
+}
+.card-body{
+	margin-left:10px;
+	padding: 0px;
+	height: 100px;
+}
+.card-title{
+	height: 30px;
+	margin-bottom:0px;
+	
+}
+.card-title a{
+	font-size:10px;
+	width:150px;
+	margin-top: 5px;	
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:10;
+    padding-left: 10px;
+    border: 1px;
+}
+
+.card-text{
+	font-size: 5px;
+}
+
+.card img{
+	padding-top:5px;
+	width: 160px;
+	height:180px;
+	padding-left: 2px;
+	padding-right: 2px;
+	
+}
+
+
+
+/* 今日推荐  */
+#silder{
+	float:right;
+  
+    margin-top:10px;
+}
+.todayBook{
+    border:solid 1px #999;
+    margin-bottom:10px;
+}
+#dome{
+    overflow:hidden; /*溢出的部分不显示*/
+    height:365px;
+    
+}
+
+#demo ul{
+	width: 200px;
+}
+
+#demo ul li a{
+	font-size: 3px;
+	overflow:hidden;
+	float: left;
+	text-align: left;
+}
+
+
+
+/* 底部*/
+
+.footer_top ul li{
+	position: relative;
+	float: left;
+    padding: 0 15px;
+    margin-left: -1px;
+    white-space: nowrap;
+    list-style: none;
+	background: url(/resources/img/common/sub_line_bg.png;) right center no-repeat;
+	left: 30%;
+}
+.footer_top ul{
+	
+	height: 31px;
+    margin: 0 auto;
+    overflow: hidden;
+    line-height: 30px;
+}
+.footer_top{
+    
+    float: none;
+}
+.footer{
+	text-align: center;
+}
