@@ -35,6 +35,7 @@ public class TypeServiceImpl implements TypeService {
 	@Override
 	public List<BookSingleType> findSingleTypes(int totalType) {
 		// TODO Auto-generated method stub
+		System.out.println(totalType+"++++++++++++++++++++++++++++++++s");
 		return typeMapper.findSingleTypes(totalType);
 	}
 

@@ -11,6 +11,7 @@ public class ShoppingCart implements Serializable{
 	private double sumPrice;
 	private int user_id;
 	private Book book;
+	private String order_id;//订单项依赖于订单
 	public ShoppingCart() {
 		
 	}
@@ -70,6 +71,18 @@ public class ShoppingCart implements Serializable{
 
 	public void setBook_id(int book_id) {
 		this.book_id = book_id;
+	}
+
+
+
+	public String getOrder_id() {
+		return order_id;
+	}
+
+
+
+	public void setOrder_id(String order_id) {
+		this.order_id = order_id;
 	}
 
 	

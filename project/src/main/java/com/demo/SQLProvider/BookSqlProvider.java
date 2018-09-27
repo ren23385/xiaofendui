@@ -7,9 +7,7 @@ import com.demo.model.Book;
 
 public class BookSqlProvider {
 
-	public String createFindAllBook(final String name,
-									int totalType,
-									 int singleType) {
+	public String createFindAllBook( @Param(value = "name")  String name,@Param(value = "totalType") int totalType,@Param(value = "singleType") int singleType) {
 		
 		return new SQL() {
 			{

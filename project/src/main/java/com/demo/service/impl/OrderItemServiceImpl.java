@@ -22,10 +22,11 @@ public class OrderItemServiceImpl implements OrderItemService {
 	}
 
 	@Override
-	public void addOrderItem(int[] arr) {
+	public void addOrderItem(int[] arr,String orderCode) {
 		for (int id : arr) {
 			
 			ShoppingCart cart = cartMapper.findCartById(id);
+			    cart.setOrder_id(orderCode);
 				
 				int addOrderItem = orderItemMapper.addOrderItem(cart);
 			
@@ -35,9 +36,14 @@ public class OrderItemServiceImpl implements OrderItemService {
 	}
 
 	@Override
-	public List<OrderItem> findAll(int id) {
+	public List<OrderItem> findAll(String id) {
 		
 		return orderItemMapper.findAll(id);
+	}
+
+	@Override
+	public int deleteOrderItem(String code) {
+		return orderItemMapper.deleteOrderItem(code);
 	}
 
 }

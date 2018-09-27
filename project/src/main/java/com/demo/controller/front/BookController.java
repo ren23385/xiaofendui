@@ -63,6 +63,11 @@ public class BookController {
 	}
 	
 	
+	public BookController() {
+		super();
+	}
+
+
 	@RequestMapping("/bookList")
 	@ResponseBody
 	public Map<String, Object> showBook(@RequestParam(defaultValue = "-1", required = false) int totalType,
@@ -70,6 +75,8 @@ public class BookController {
 			@RequestParam(defaultValue = "", required = false) String name,
 			@RequestParam(defaultValue="-1",required=false) int singleType) {
 
+		
+		System.out.println("++++++++========");
 		Map<String, Object> result = new HashMap<>();
 		
 		if(singleType != -1) {
@@ -109,7 +116,7 @@ public class BookController {
 		return result;
 	}
 	
-	//
+	//更具id展示商品
 	@RequestMapping("/toProduct")
 	public String toBookInfo(@RequestParam(defaultValue="1") int id,Model model) {
 		Book book = bookService.findBook(id);
@@ -117,5 +124,30 @@ public class BookController {
 		model.addAttribute("book",book);
 		return "product";
 	}
+	//搜索商品
+	@RequestMapping("/searchWord")
+	@ResponseBody
+	public List<String> toSearchWord( @RequestParam(required=false) String word) {
+		//Map<String,Object> map=new HashMap<>();
+		List<String>list=bookService.searchProduct(word);
+		System.out.println(list);
+		//map.put("map", list);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+			
+		}
+		System.out.println(word+"========="+list);
+		return list;
+	}
+	
+	 //搜索到名字展示商品
+		@RequestMapping("/toProduct2")
+		public String toBookInfo2(@RequestParam(name="name") String name,Model model) {
+			Book book = bookService.findBook(name);
+			
+			model.addAttribute("book",book);
+			return "product";
+		}
+	
 
 }

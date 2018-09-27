@@ -22,4 +22,8 @@ public interface BookService {
 	PageInfo<Book> findAllBooks(int pageNo, String name, int totalType, int singleType);
 	
 	Book findBook(int id);
+
+	List<String> searchProduct(String word);
+
+	Book findBook(String name);
 }

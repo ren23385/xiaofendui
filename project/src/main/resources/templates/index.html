@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/common/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/common/nav.css" />
@@ -15,7 +15,8 @@
 
 </head>
 <body style="background-color: #FEF7F5;">
-	<div class="container-fluid" style="border: hidden; margin: 0px;" id="app">
+	<div class="container-fluid" style="border: hidden; margin: 0px;"
+		id="app">
 		<!-- 头部 -->
 		<div class="card-header">
 			<!-- <iframe src="common/nav2.html" class="col-md-12" frameborder="0"></iframe> -->
@@ -26,8 +27,7 @@
 
 		<!-- 中部 -->
 		<div class="card-body col-12"
-			style="height: 425px; padding-top: 0px; padding-bottom: 0px;"
-			>
+			style="height: 425px; padding-top: 0px; padding-bottom: 0px;">
 			<!-- 中部左侧 -->
 			<div class="central_left col-2">
 				<!--图书商品分类开始-->
@@ -42,7 +42,7 @@
 					<template v-else="">
 
 					<div class="book_cate" v-for="totalType in totalTypes" v-key="">
-						
+
 						<a v-bind:href="'toBookList?totalType='+totalType.id">{{totalType.bookType}}</a>
 					</div>
 					</template>
@@ -94,16 +94,17 @@
 					</div>
 					<div id="dome">
 						<template v-if="!todayBooks || !todayBooks.length">
-							<div class="card">暂无数据</div>
+						<div class="card">暂无数据</div>
 						</template>
 						<template v-else="">
-						<ul  v-for="todayBook in todayBooks" style="padding-left: 0px;margin-bottom: 0px;">
+						<ul v-for="todayBook in todayBooks"
+							style="padding-left: 0px; margin-bottom: 0px;">
 							<li>
 								<div class="card">
-									<input type="hidden" name="id" value="{{todayBook.id}}"/>
-									<a href="#">● ●{{todayBook.bookName}}</a>
+									<input type="hidden" name="id" value="{{todayBook.id}}" /> <a
+										href="#">● ●{{todayBook.bookName}}</a>
 								</div>
-								
+
 							</li>
 						</ul>
 						</template>
@@ -114,10 +115,10 @@
 
 		</div>
 
-	
-	
+
+
 		<!-- 最新上架 -->
-		<div class="newbooks" >
+		<div class="newbooks">
 			<div id="bookTab" class="book_sort" style="border: 1;">
 				<div class="book_new">
 					<div class="book_left">最新上架</div>
@@ -136,24 +137,28 @@
 						<div class="card">暂无数据</div>
 						</template>
 						<template v-else="">
-						<div class="card-deck" v-for="newBook in newBooks" style="padding-left: 33px">
+						<div class="card-deck" v-for="newBook in newBooks"
+							style="padding-left: 33px">
 							<input type="hidden" name="id" />
-							 
+
 							<div class="card" style="width: 150px">
-								<a class="img" href="#" > <img
-									class="card-img-top" v-on:click="getProduct(newBook.id)"
+								<a class="img" href="#"> <img class="card-img-top"
+									v-on:click="getProduct(newBook.id)"
 									v-bind:src="'/resources/bookImage/'+newBook.photo"
 									alt="Card image cap" />
 								</a>
 								<div class="card-body">
 									<h5 class="card-title">
-										<a href="#"  v-on:click="getProduct(newBook.id)"  style="font-size: 15px;color: black;" > {{newBook.bookName}} </a>
+										<a href="#" v-on:click="getProduct(newBook.id)"
+											style="font-size: 15px; color: black;">
+											{{newBook.bookName}} </a>
 									</h5>
-									<br/>
-									<p class="card-text"  style="font-size: 13px;color: #BEBEBE;">{{newBook.author}}</p>
+									<br />
+									<p class="card-text" style="font-size: 13px; color: #BEBEBE;">{{newBook.author}}</p>
 								</div>
 								<div class="card-footer" style="background: #E2E2E2">
-									<font  style="color: red"><a href="#" style="color: black;" v-on:click="getProduct(newBook.id)">购买</a>￥:{{newBook.newPrice}}</font>
+									<font style="color: red"><a href="#"
+										style="color: black;" v-on:click="getProduct(newBook.id)">购买</a>￥:{{newBook.newPrice}}</font>
 								</div>
 							</div>
 						</div>
@@ -223,9 +228,94 @@
 			getProduct:function(id){
               window.location.href="/toProduct?id="+id;
 				}
+
+		 
+					
+							
 		}
 
 	});
+	</script>
+	<script type="text/javascript">
+    // 移到上面
+	function overFn(obj){
+		
+		$(obj).css("background","#cccc");
+		
+		
+		}
+	 // 从上面移开
+		
+		function outFn(obj){
+		$(obj).css("background","#fff");
+		
+		
+		}
+		function clickFn(obj){
+			var name=$(obj).html();
+		$("#search").val(name);
+	    $("#showDiv").css("display","none");
+	    // 跳转到指定信息页面
+	    window.location.href="/toProduct2?name="+name;	
+		
+		}
+
+	
+	function searchWord(obj){
+		var word=$(obj).val();
+		var content="";
+		//console.log(word);
+		$.post(
+				
+				"/searchWord",
+				
+				{"word":word},
+				 function(response){
+					/* <![CDATA[ */
+					//console.log(JSON.parse(response));
+					console.log(response);
+				if(response){
+				
+				for(var i in response)
+				
+				
+				{
+				//console.log(response[i]+'-----');
+				content+="<div style='padding:5px;cursor:pointer'  onmouseover='overFn(this);'  onmouseout='outFn(this);' onclick='clickFn(this);'>"+response[i]+"</div>";
+				
+				}
+				
+				$("#showDiv").html(content);
+				
+		          $("#showDiv").css("display","block");
+				
+				
+				} 
+				/* ]]>     */
+				if(word=="")               // 如果输入框内无内容就隐藏搜索栏
+				{
+				
+				 $("#showDiv").css("display","none");	
+				
+				}
+				
+				
+				},
+				
+				"json"
+				
+				); 
+
+
+
+		}
+	
+			
+
+	
+
+
+
 	</script>
 </body>
 </html>

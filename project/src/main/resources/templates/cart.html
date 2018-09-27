@@ -80,88 +80,87 @@ font {
 			</tr>
 		</div>
 		<!--2 购物项设计-->
-       
-        <div th:unless="${#lists.isEmpty(list)}">
-		<div class="row" style="margin-top: 50px;">
 
-			<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
-				<strong style="font-size: 16px; margin: 5px 0;">订单详情</strong>
+		<div th:unless="${#lists.isEmpty(list)}">
+			<div class="row" style="margin-top: 50px;">
 
-
-				<table class="table table-bordered" id="checkBox">
-
-					<tbody>
-						<tr class="warning">
-							<th></th>
-							<th>图片</th>
-							<th>商品</th>
-							<th>价格</th>
-							<th>数量</th>
-							<th>小计</th>
-							<th>操作</th>
-						</tr>
+				<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
+					<strong style="font-size: 16px; margin: 5px 0;">订单详情</strong>
 
 
-						<tr class="active" th:each="cart :${list}">
-							<td width="5%">
-								<!-- 购物车的选择框 --> <input type="checkbox" th:value="${cart.id}"
-								name="cartid" th:onclick="@{'getId('+${cart.id}+')'}"/>
-							</td>
-							<td width="15%"><img
-								th:src="@{'/resources/bookImage/'+${cart.book.photo}}"
-								height="70px" width="80px" /></td>
-							<td width="28%"><a target="_blank" th:inline="text">
-									[[${cart.book.bookName}]]</a></td>
-							<td width="14%" th:inline="text">￥[[${cart.price}]]</td>
-							<!-- 对数量回填并操作加减 -->
-							<td width="15%">
-								<div class="add-plus-input"
-									style="float: left; border: solid 1px #D9D9D9;">
-									<a th:href="@{'/addCartNum?id='+${cart.id}}" class="add btn"
-										style="border: none;">+</a>
-									<!-- 用来获取number数据 -->
-									<input type="text" class="num" name="number"
-										th:value="${cart.orderNumn}"
-										style="width: 40px; height: 20px; text-align: center; border: none; background-color: #FEFEFE;" />
-									<a th:href="@{'/reduceCartNum?id='+${cart.id}}"
-										class="plus btn" style="border: none;">-</a>
+					<table class="table table-bordered" id="checkBox">
 
-								</div>
-
-							</td>
-							<td width="13%"><span class="subtotal" th:inline="text">[[${cart.sumPrice}]]</span></td>
-							<td width="10%"><a
-								v-bind:href="'/delBookFromCart?id='+cart.id" title="删除"
-								id="delete" data-toggle="modal" data-target="#exampleModal"
-								onclick="delFunction(event);"> 删除 </a></td>
-						</tr>
+						<tbody>
+							<tr class="warning">
+								<th></th>
+								<th>图片</th>
+								<th>商品</th>
+								<th>价格</th>
+								<th>数量</th>
+								<th>小计</th>
+								<th>操作</th>
+							</tr>
 
 
-					</tbody>
-				</table>
+							<tr class="active" th:each="cart :${list}">
+								<td width="5%">
+									<!-- 购物车的选择框 --> <input type="checkbox" th:value="${cart.id}"
+									name="cartid" th:onclick="@{'getId('+${cart.id}+')'}" />
+								</td>
+								<td width="15%"><img
+									th:src="@{'/resources/bookImage/'+${cart.book.photo}}"
+									height="70px" width="80px" /></td>
+								<td width="28%"><a target="_blank" th:inline="text">
+										[[${cart.book.bookName}]]</a></td>
+								<td width="14%" th:inline="text">￥[[${cart.price}]]</td>
+								<!-- 对数量回填并操作加减 -->
+								<td width="15%">
+									<div class="add-plus-input"
+										style="float: left; border: solid 1px #D9D9D9;">
+										<a th:href="@{'/addCartNum?id='+${cart.id}}" class="add btn"
+											style="border: none;">+</a>
+										<!-- 用来获取number数据 -->
+										<input type="text" class="num" name="number"
+											th:value="${cart.orderNumn}"
+											style="width: 40px; height: 20px; text-align: center; border: none; background-color: #FEFEFE;" />
+										<a th:href="@{'/reduceCartNum?id='+${cart.id}}"
+											class="plus btn" style="border: none;">-</a>
+
+									</div>
+
+								</td>
+								<td width="13%"><span class="subtotal" th:inline="text">[[${cart.sumPrice}]]</span></td>
+								<td width="10%"><a th:href="@{'/delBookFromCart?id='+${cart.id}}" title="删除"
+									id="delete" data-toggle="modal" data-target="#exampleModal"
+									onclick="delFunction(event);"> 删除 </a></td>
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<div style="margin-right: 130px;">
+				<div style="text-align: right;">
+					<em style="color: #ff6600;"> 登录后确认是否享有优惠&nbsp;&nbsp; </em> 赠送积分: <em
+						style="color: #ff6600;" th:inline="text">[[${sumMoney}]]</em>&nbsp;
+					商品金额: <strong style="color: #ff6600;" th:inline="text">￥[[${sumMoney}]]元</strong>
+				</div>
+				<div
+					style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
+
+					<a href="/clearCart" id="clear" class="clear" data-toggle="modal"
+						data-target="#exampleModal2" onclick="clearFunction(event);">清空购物车</a>
+
+					<a href="/getOrderItem"> <input type="submit" width="100"
+						value="结算" name="submit" border="0" id="submitCart"
+						style="background: url('/resources/img/cart/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: black;" />
+					</a>
+				</div>
 			</div>
 		</div>
-
-
-		<div style="margin-right: 130px;">
-			<div style="text-align: right;">
-				<em style="color: #ff6600;"> 登录后确认是否享有优惠&nbsp;&nbsp; </em> 赠送积分: <em
-					style="color: #ff6600;" th:inline="text">[[${sumMoney}]]</em>&nbsp;
-				商品金额: <strong style="color: #ff6600;" th:inline="text">￥[[${sumMoney}]]元</strong>
-			</div>
-			<div
-				style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
-
-				<a href="/clearCart" id="clear" class="clear" data-toggle="modal"
-					data-target="#exampleModal2" onclick="clearFunction(event);">清空购物车</a>
-
-				<a href="/getOrderItem"> <input type="submit" width="100"
-					value="结算" name="submit" border="0" id="submitCart"
-					style="background: url('/resources/img/cart/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: black;" />
-				</a>
-			</div>
-		</div>
-      </div>
 	</div>
 	<!--下边线-->
 	<div style="border: solid 1px #FF2832; width: 100%; margin-top: 30px;"></div>
@@ -226,7 +225,8 @@ font {
 
 	<script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
 		</script>
-	<script type="text/javascript" src="/resources/js/common/bootstrap.min.js">
+	<script type="text/javascript"
+		src="/resources/js/common/bootstrap.min.js">
 	</script>
 	<script type="text/javascript" src="/resources/js/city.js"></script>
 	<script type="text/javascript" src="/resources/js/vue/dist/vue.min.js">
@@ -329,6 +329,7 @@ font {
  	    //给确认框绑定一次性事件
 	   $("#sureDel").one("click",function(){
 	   window.location.href=url;
+	   alert(url);
 	   });
 
 

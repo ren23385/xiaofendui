@@ -63,4 +63,16 @@ public class CartServiceImpl implements CartService {
 		return cartMapper.reduceCartNum(id);
 	}
 
+	@Override
+	public int cleaCartById(int[] arr) {
+		int delBookFromCart = 0;
+		for (int i : arr) {
+			
+			
+			 delBookFromCart = cartMapper.delBookFromCart(i);
+		}
+		
+		return delBookFromCart;
+	}
+
 }

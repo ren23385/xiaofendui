@@ -11,12 +11,21 @@ public class OrderItem implements Serializable{
 	private int orderNum;
 	private Book book;
 	private int address_id;//订单项收货地址（一个人的收货地址不唯一）
+	private String order_id;//订单项依赖于订单
 	public int getAddress_id() {
 		return address_id;
 	}
 
 	public void setAddress_id(int address_id) {
 		this.address_id = address_id;
+	}
+
+	public String getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(String order_id) {
+		this.order_id = order_id;
 	}
 
 	public OrderItem() {

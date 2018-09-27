@@ -18,10 +18,9 @@ body {
 	width: 100%;
 	height: 300px;
 }
-.borderColor:{
 
-border: solid 2px #FF2832;
-
+.borderColor: {
+	border: solid 2px #FF2832;
 }
 </style>
 </head>
@@ -43,17 +42,19 @@ border: solid 2px #FF2832;
 	</div>
 	<!--边线-->
 	<div style="border: solid 2px #FF2832; width: 100%; margin-top: 30px;"></div>
-	<div class="container"  id="app">
+	<div class="container" id="app">
 		<div class="row">
-			<div class="col-md-12" style="margin-top: 10px; padding-left: 90px;"  >
-				<span style="font-size: 18px" >收货人信息:</span><br/>
-				<div v-for="address in listAddress"    style="border: solid 2px #E6E4E2;width: 200px;height: 110px;float: left;list-style: none;padding: 5px;background: #FBFBFB;margin-left: 10px" >
-			   <input type="checkbox"  v-on:click="getAddress(address.id)" />
-			    <div class="divClass">
-				<li>收货人:  {{address.personName}}</li>
-				<li>收获地址:  {{address.address}}</li>
-				<li>收货人电话: {{address.mobile}}</li>
-				</div>
+			<div class="col-md-12" style="margin-top: 10px; padding-left: 90px;">
+				<span style="font-size: 18px">收货人信息:</span><br />
+				<div v-for="address in listAddress"
+					style="border: solid 2px #E6E4E2; width: 200px; height: 140px; float: left; list-style: none; padding: 5px; background: #FBFBFB; margin-left: 10px">
+					<input type="checkbox" v-on:click="getAddress(address.id)" />
+					<div class="divClass">
+						<li>收货人: {{address.personName}}</li>
+						<li>收获地址: {{address.address}}</li>
+						<li>收货人电话: {{address.mobile}}</li>
+						<li><a href="#">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  v-on:click="toDelete(event)"  v-bind:href="'/deleteAddress?id='+address.id" data-toggle="modal" data-target="#exampleModal2">删除</a></li>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -65,7 +66,7 @@ border: solid 2px #FF2832;
 			</div>
 		</div>
 
-		<div class="row" >
+		<div class="row">
 			<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
 				<strong>订单详情</strong>
 				<table class="table table-bordered">
@@ -81,39 +82,39 @@ border: solid 2px #FF2832;
 							<th>小计</th>
 						</tr>
 						<tr class="active" v-for="cart in list">
-							<td width="20%"><input type="hidden" name="id" v-bind:value="cart.id" />
-								<img v-bind:src="'/resources/bookImage/'+cart.book.photo"
+							<td width="20%"><input type="hidden" name="id"
+								v-bind:value="cart.id" /> <img
+								v-bind:src="'/resources/bookImage/'+cart.book.photo"
 								height="70px" width="80px" /></td>
 							<td width="28%"><a target="_blank">
 									{{cart.book.bookName}}</a></td>
 							<td width="14%">￥{{cart.price}}</td>
-							<td width="15%">
-                              {{cart.orderNumn}}
-							</td>
-							<td width="13%"><span class="subtotal" >￥{{cart.sumPrice}}</span></td>
-							
+							<td width="15%">{{cart.orderNumn}}</td>
+							<td width="13%"><span class="subtotal">￥{{cart.sumPrice}}</span></td>
+
 						</tr>
 
 					</tbody>
 				</table>
 			</div>
-            
+
 		</div>
-		 <div class="row" style="margin-left: 900px" >
+		<div class="row" style="margin-left: 900px">
 			<div>
-				<font style="text-align: right;">商品金额: <strong style="color: #ff6600;" >￥ {{sumMoney}}元</strong></font>
-			    <input id="sumMoney" type="hidden"  v-bind:value="sumMoney"/>
+				<font style="text-align: right;">商品金额: <strong
+					style="color: #ff6600;">￥ {{sumMoney}}元</strong></font> <input
+					id="sumMoney" type="hidden" v-bind:value="sumMoney" />
 			</div>
-            </div>
+		</div>
 		<hr />
 		<p style="text-align: right; margin-right: 100px;">
-			<a href="/toPayMoney" 
-				class="zhifu"> <img src="/resources/img/order/zhifu.png" id="submitOrder"
-				width="110" height="38" border="0" />
+			<a href="/toPayMoney" class="zhifu"> <img
+				src="/resources/img/order/zhifu.png" id="submitOrder" width="110"
+				height="38" border="0" />
 			</a>
 		</p>
 
-	
+
 	</div>
 	<!--下边线-->
 	<div style="border: solid 1px #FF2832; width: 100%; margin-top: 30px;"></div>
@@ -146,7 +147,7 @@ border: solid 2px #FF2832;
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body" >
+					<div class="modal-body">
 
 						<form action="/addAddress" method="post">
 							<div class="form-group row">
@@ -159,7 +160,8 @@ border: solid 2px #FF2832;
 							<div class="form-group row">
 								<label for="mobile" class="col-sm-3 col-form-label">手机号:</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="mobile" name="mobile" />
+									<input type="text" class="form-control" id="mobile"
+										name="mobile" />
 								</div>
 							</div>
 							<div class="form-group row">
@@ -177,7 +179,7 @@ border: solid 2px #FF2832;
 							</div>
 
 							<div class="modal-footer">
-								<input type="submit" class="btn btn-danger" value="确认收货地址"/>
+								<input type="submit" class="btn btn-danger" value="确认收货地址" />
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">取消</button>
 
@@ -190,19 +192,43 @@ border: solid 2px #FF2832;
 				</div>
 			</div>
 		</div>
-		
+
+	</div>
+	<!-- 删除模态 对话框-->
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">确定移除该地址吗？</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="sureDel">确定</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	
-  <script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
+
+	<script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
 		</script>
-	<script type="text/javascript" src="/resources/js/common/bootstrap.min.js">
+	<script type="text/javascript"
+		src="/resources/js/common/bootstrap.min.js">
 	</script>
 	<script type="text/javascript" src="/resources/js/city.js"></script>
 	<script type="text/javascript" src="/resources/js/vue/dist/vue.min.js">
 	</script>
 	<script type="text/javascript"
 		src="/resources/js/axios/dist/axios.min.js">
-	</script>	
+	</script>
 	<!-- 利用vue获取购物车数据 -->
 	<script type="text/javascript">
 	//var sumMoney=0.0;
@@ -236,13 +262,27 @@ border: solid 2px #FF2832;
                },
                getAddress:function(id){
 
-                alert(id);
+                //alert(id);
 
                 // 记住收货地址id
                 addressId=id;
                 
 
-                 }   
+                 } ,
+                 toDelete: function(event)
+                 {
+                  	//取消超级链接的默认行为
+                 	   event.preventDefault();
+                 	   //获取地址
+                 	  var url=$(event.target).attr("href");
+                 	  //alert(url);
+                 	    //给确认框绑定一次性事件
+                	   $("#sureDel").one("click",function(){
+                	   window.location.href=url;
+                	   
+                	   });
+
+                 }  
                    
             
              
@@ -266,9 +306,9 @@ border: solid 2px #FF2832;
 
 
 	</script>
-	
-	
-	
+
+
+
 	<script type="text/javascript">
 	 var arr=[];
 	 var sumMoney=0.0;
@@ -307,8 +347,8 @@ border: solid 2px #FF2832;
 
 
 	</script>
-	
-	
+
+
 </body>
 
 </html>

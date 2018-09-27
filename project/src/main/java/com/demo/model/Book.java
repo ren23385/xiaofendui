@@ -101,6 +101,13 @@ public class Book implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", bookName=" + bookName + ", author=" + author + ", bookConcern=" + bookConcern
+				+ ", publishDate=" + publishDate + ", page=" + page + ", oldPrice=" + oldPrice + ", newPrice="
+				+ newPrice + ", prixPrice=" + prixPrice + ", bookToallType_id=" + bookToallType_id
+				+ ", bookSingleType_id=" + bookSingleType_id + ", descri=" + descri + ", photo=" + photo + "]";
+	}
 	
 	
 }

@@ -65,7 +65,7 @@ public class CartController {
 	
 	// 把商品信息添加到购物车
 	@RequestMapping("toAddCart")
-	public String toAddBook(@RequestParam int id,@RequestParam double newPrice,@RequestParam int number,HttpSession session) {
+	public String toAddBook(Model model,@RequestParam int id,@RequestParam double newPrice,@RequestParam int number,HttpSession session,@RequestParam String bookName) {
 		//先判断之前购物车是否有该商品了 
 		ShoppingCart cart=cartService.findCart(id);
 		if(cart!=null) {
@@ -73,7 +73,7 @@ public class CartController {
 			
 			if(update>0)
 			{
-				
+				model.addAttribute("bookName", bookName);
 				
 				return "addsuccess";
 			}
@@ -91,7 +91,7 @@ public class CartController {
 		if(saveCart>0)
 		{
 			
-			
+			model.addAttribute("bookName", bookName);
 			return "addsuccess";
 		}
 		
@@ -101,7 +101,7 @@ public class CartController {
 	
 	
 	// 从购物车中删除单个商品
-	@RequestMapping("delBookFromCart")
+	@RequestMapping("/delBookFromCart")
 	public String delBookFromCart(@RequestParam int id) {
 		int delBookFromCart = cartService.delBookFromCart(id);
 		if(delBookFromCart>0) {

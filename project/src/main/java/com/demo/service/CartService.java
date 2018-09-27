@@ -15,4 +15,5 @@ public interface CartService {
 	ShoppingCart findCartById(int id);
 	int addCartNum(int id);
 	int reduceCartNum(int id);
+	int cleaCartById(int[] arr);
 }

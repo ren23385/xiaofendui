@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/common/bootstrap.min.css" />
+<link rel="stylesheet" href="/resources/css/common/nav.css" />
+<link rel="stylesheet" href="/resources/css/common/index.css" />
+<script type="text/javascript" src="/resources/js/common/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/resources/js/common/bootstrap.min.js">
+	</script>
+<script type="text/javascript" src="/resources/js/vue/dist/vue.min.js">
+	</script>
+<script type="text/javascript"
+	src="/resources/js/axios/dist/axios.min.js">
+	</script>
+</head>
+<body background="#FEF7F5">
+	<div class="container-fluid" style="border: hidden; margin: 0px;"
+		id="app">
+
+
+		<!-- 头部 -->
+		<!-- <div class="card-header">
+			<iframe src="common/nav2.html" class="col-md-12" frameborder="0"></iframe>
+			<div class="col-md-12" style="padding: 0px;">
+				<div th:replace="/common/nav::nav"></div>
+			</div>
+		</div> -->
+		<div id="hd" class="col-md-12" th:fragment="nav">
+			<div id="tools">
+				<div class="top">
+					<ul>
+						<td th:if="${session.user==null}">
+							<li><a name="nav2" target="_blank" href="/toLogin"
+								class="nav"> 登陆 </a></li>
+
+						</td>
+						<td th:unless="${session.user==null}">
+							<li>欢迎：<span style="color: red;" th:inline="text">
+									[[${session.user.name}]] </span>登陆
+						</li>
+						</td>
+
+
+						<li><a name="nav2" target="_blank" href="/toRegister"
+							class="nav"> 注册 </a></li>
+						<li><a name="nav2" target="_blank" href="/toCart" class="nav">
+								我的购物车 </a></li>
+					</ul>
+
+				</div>
+				<!-- 搜索栏 -->
+				<div class="row" style="margin-bottom: 20px">
+					<div style="float: left;" class="col-md-3">
+						<a href="/"> <img src="/resources/img/index/logo.png"
+							title="点击图片回到首页" />
+						</a>
+					</div>
+					<div class="col-md-9">
+						<form action="#" method="post" class="form-inline search">
+							<input class="form-control col-4" type="search"
+								placeholder="Search" aria-label="Search" name="name"
+								height="30px" style="border: solid 2px #FF2832;" />
+							<button class="btn btn-outline-success" type="submit"
+								style="background: #FF2832; color: white; height: 40px">搜索</button>
+						</form>
+					</div>
+					<!-- <div style="" class="col-md-1">
+			</div> -->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-top: 50px">
+			<div class="col-md-1"></div>
+			<div class="col-md-9">
+
+				<table class="table table-bordered">
+					<template v-if="!list||!list.length">
+
+					<tr class="row">
+						<td colspan="5">没有数据</td>
+
+					</tr>
+					</template>
+					<template v-if="list">
+
+					<tbody v-for="order in list">
+						<tr class="warning" style="background: #EFF3FF">
+							<th colspan="5">订单号：<span id="orderCode">{{order.id}}</span>
+								<span style="margin-left: 50px">订单状态：<span
+									style="color: red">未付款</span></span> <span style="margin-left: 100px">￥<span
+									id="orderMoney">{{order.totallPrice}}</span></span> <!-- 操作 --> <span><a
+									href="#" style="margin-left: 350px"
+									v-on:click="toPayView(order.id,order.totallPrice)"> <img
+										src="/resources/img/order/zhifu.png" id="submitOrder"
+										width="80" height="30" border="0" /></a></span> <span><a v-bind:href="'/deleteOrder?code='+order.id" data-toggle="modal" data-target="#exampleModal"
+									style="margin-left: 20px" v-on:click="toDelete(event)">取消</a></span>
+							</th>
+						</tr>
+						<tr class="warning">
+							<th>图片</th>
+							<th>商品</th>
+							<th>价格</th>
+							<th>数量</th>
+							<th>小计</th>
+						</tr>
+						<tr class="active" v-for="orderItem in order.list">
+							<td width="20%"><input type="hidden" name="id"
+								v-bind:value="orderItem.id" /> <img
+								v-bind:src="'/resources/bookImage/'+orderItem.book.photo"
+								height="70px" width="80px" /></td>
+							<td width="28%"><a target="_blank">
+									{{orderItem.book.bookName}}</a></td>
+							<td width="14%">￥{{orderItem.price}}</td>
+							<td width="15%">{{orderItem.orderNum}}</td>
+							<td width="13%"><span class="subtotal">￥{{orderItem.sumPrice}}</span></td>
+							<!-- <td width="10"></td> -->
+						</tr>
+					</tbody>
+					</template>
+				</table>
+
+
+			</div>
+			<div class="col-md-2"></div>
+
+		</div>
+
+		<!--下边线-->
+		<div class="row" style="margin-top: 300px">
+			<div class="col-md-12" style="text-align: center; line-height: none;">
+
+				<div class="footer_copyright">
+					<span>Copyright (C) 当当网 2004-2014, All Rights Reserved</span> <a
+						href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001051000098"
+						target="_blank" class="footer_img" rel="nofollow"><img
+						src="//img60.ddimg.cn/upload_img/00459/index/validate.gif" /></a><span><a
+						href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">京ICP证041189号</a></span><span>出版物经营许可证&nbsp;新出发京批字第直0673号</span>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+	</div>
+	<!-- 删除模态 对话框-->
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">确定取消该订单吗？</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="sureDel">确定</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 利用vue获取购物车数据 -->
+	<script type="text/javascript">
+		var code="";
+		var sumMoney=0;
+     var vue=new Vue({
+         el:'#app',
+         data:{
+        	
+             list:{},
+           
+         },
+         methods:{
+            
+           getList:function(){
+
+            axios.post("/getOrderList").then(function(response){
+
+               if(response.data){
+
+                   vue.list=response.data.list;
+                   }
+                
+
+                }).catch(function(error){
+
+
+                    });
+
+               },
+               toPayView:function(id,money){
+                  //alert(id);
+                  //alert(money); 
+            	   //code=$("#orderCode").text();
+            	   //sumMoney=$("#orderMoney").text();
+            	  window.location.href="/toPayMoney2?code="+id;
+
+                 },
+                 toDelete: function(event)
+               {
+                	//取消超级链接的默认行为
+               	   event.preventDefault();
+               	   //获取地址
+               	  var url=$(event.target).attr("href");
+               	    //给确认框绑定一次性事件
+              	   $("#sureDel").one("click",function(){
+              	   window.location.href=url;
+              	   });
+
+               }
+                   
+            
+             
+
+             } 
+
+
+
+
+         });
+     
+
+     vue.getList();
+
+
+	</script>
+</body>
+</html>

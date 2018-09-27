@@ -30,6 +30,8 @@ public class UserController {
 
 	@RequestMapping("/doLogin")
 	public String doLogin(@RequestParam String vode,@RequestParam String name,@RequestParam String password,HttpSession session,Model model) {
+		System.out.println(name+"------"+password+"-----"+vode);
+		
 		String Vodeattribute = (String) session.getAttribute(ValidateController.serverCode);
 		if(!vode.equalsIgnoreCase(Vodeattribute)) {
 			

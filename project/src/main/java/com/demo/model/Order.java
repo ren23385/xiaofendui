@@ -1,6 +1,7 @@
 package com.demo.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Order implements Serializable{
 
@@ -10,6 +11,7 @@ public class Order implements Serializable{
 	private int user_id;
 	private int orderStatus;
 	private int addressId;
+	private List<OrderItem> list;//一个订单包括多个订单项
 	public Order() {
 		
 	}
@@ -61,6 +63,16 @@ public class Order implements Serializable{
 
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
+	}
+
+
+	public List<OrderItem> getList() {
+		return list;
+	}
+
+
+	public void setList(List<OrderItem> list) {
+		this.list = list;
 	}
 	
 	

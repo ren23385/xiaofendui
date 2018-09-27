@@ -6,7 +6,9 @@ import com.demo.model.OrderItem;
 
 public interface OrderItemService {
 
-	void addOrderItem(int[] arr);
+	void addOrderItem(int[] arr, String orderCode);
 
-	List<OrderItem> findAll(int id);
+	List<OrderItem> findAll(String string);
+
+	int deleteOrderItem(String code);
 }
