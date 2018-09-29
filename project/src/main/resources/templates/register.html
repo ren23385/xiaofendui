@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no,user-scalable=no"/>
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no,user-scalable=no" />
 <title>新用户注册</title>
 <link rel="icon" type="image/x-icon"
 	href="/resources/register_img/favicon.ico" />
@@ -23,7 +23,6 @@
 	color: #fff;
 	border-radius: 22px;
 	margin-left: 50px;
-	
 }
 </style>
 <style type="text/css">
@@ -36,9 +35,9 @@
 #nav_operate a:hover {
 	color: #FF2832;
 }
-a{
-color:black;
 
+a {
+	color: black;
 }
 </style>
 <style type="text/css">
@@ -46,33 +45,31 @@ color:black;
 	margin-bottom: 30px;
 	position: relative;
 }
-.col-sm-3.col-form-label{
 
-font-size: 20px;
-font-family: fantasy;
+.col-sm-3.col-form-label {
+	font-size: 20px;
+	font-family: fantasy;
+}
 
+.form-group.row {
+	margin-top: 50px;
+}
 
- }
- .form-group.row{
- 
- margin-top: 50px;
- 
- }
- input{
- 
- height: 44px;
- }
- 
+input {
+	height: 44px;
+}
 </style>
 </head>
 <body style="background-color: #FEF7F5">
-	<div class="card" style="margin-left: 200px; margin-right: 200px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px;">
+	<div class="card"
+		style="margin-left: 200px; margin-right: 200px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px;">
 		<div class="card-header"
-			style="padding-bottom: 6px;padding-top: 6px;border-bottom-width: 0px;padding-left: 0px;">
-			<nav class="navbar" style="padding-top: 4px;padding-bottom: 4px;padding-left: 0px;">
-			    <div>
-				<img src="/resources/img/register_img/ddnewhead_logo.gif"
-					style="width: 180px;height: 80px;" />
+			style="padding-bottom: 6px; padding-top: 6px; border-bottom-width: 0px; padding-left: 0px;">
+			<nav class="navbar"
+				style="padding-top: 4px; padding-bottom: 4px; padding-left: 0px;">
+				<div>
+					<img src="/resources/img/register_img/ddnewhead_logo.gif"
+						style="width: 180px; height: 80px;" />
 				</div>
 				<div class="headoperate" id="headmenu" style="text-align: center;">
 					<ul class="nav_operate">
@@ -86,59 +83,67 @@ font-family: fantasy;
 			</nav>
 		</div>
 		<div style="border: solid 2px #FF2832; width: 100%;"></div>
+		<!-- 登录框-->
 		<div class="card-block"
-			style="margin-top: 60px;  border-bottom-width: 0px; border: 5px solid #e5e5e5; border-width: 0px 0px 5px 5px;">
+			style="margin-top: 60px; border-bottom-width: 0px; border: 5px solid #e5e5e5; border-width: 0px 0px 5px 5px;">
 			<div class="container-fluid w-50" id="input_div">
 				<div class="col-md-12" style="margin-top: 30px;" id="input_div">
-					<form action="register" method="post">
-
+					<!--显示错误信息 -->
+					<div th:inline="text" style="background: #efefef">
+						<p
+							style="font-size: 16px; color: red; display: none; text-align: center; margin-bottom: 10px"
+							id="msgInfo">[[${msg}]]</p>
+					</div>
+					<form class="form-horizontal" action="#" method="post" id="app"
+						v-on:submit.prevent="onSubmit">
 						<div class="form-group row" id="inputnum">
-							<label for="inputmobile" class="col-sm-3 col-form-label" >手机号码:</label>
+							<label for="inputmobile" class="col-sm-3 col-form-label">手机号码:</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="inputmobile"
-									placeholder="请输入手机号" name="num" />
+									required="required" maxlength="11" placeholder="请输入手机号"
+									name="name" />
+								<div class="invalid-feedback"></div>
 							</div>
 						</div>
-
 						<div class="form-group row" id="password">
 							<label for="inputPassword" class="col-sm-3 col-form-label">登录密码:</label>
 							<div class="col-sm-9">
 								<input type="password" class="form-control" id="inputPassword"
-									placeholder="请设置密码" name="pwd"/>
+									required="required" placeholder="请设置密码" name="password" />
+								<div class="invalid-feedback"></div>
 							</div>
 						</div>
-
 						<div class="form-group row" id="password2">
 							<label for="inputPassword2" class="col-sm-3 col-form-label">确认密码:</label>
 							<div class="col-sm-9">
 								<input type="password" class="form-control" id="inputPassword2"
-									placeholder="请确认密码"  name="pwd"/>
+									required="required" placeholder="请确认密码" name="password2" />
+								<div class="invalid-feedback"></div>
 							</div>
 						</div>
 						<div class="form-group row" id="inv_code">
 							<label for="inputVcode" class="col-sm-3 col-form-label">验证码:</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="inputVcode"
-									placeholder="验证码不区分大小写"  name="vcode"
-									maxlength="4" autocomplete="off" />
+									placeholder="验证码不区分大小写" name="vcode" maxlength="4"
+									autocomplete="off" />
+								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-sm-3">
 								<img title="点击换图片" src="/vode.png" class="vcodeimg"
-									style="width: 80px"/><a class="vcodeimg"
-									>换一张</a>
+									style="width: 100px; height: 40px" /><a class="vcodeimg">换一张</a>
 							</div>
 						</div>
-						<div class="form-group row button" >
-							<div class="col-sm-10 offset-md-2" style="margin-bottom:30px ">
-								<button type="submit" class="btn btn-primary" id="butt_submit">点击注册</button>
+						<div class="form-group ">
+							<div class="col-sm-offset-2 col-sm-10"
+								style="margin-bottom: 30px">
+								<input type="submit" id="butt_submit" value="点击注册" name="submit" />
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-
-		
 		<div class="card-footer text-muted">
 			<div class="footer_nav"
 				style="line-height: 100px; text-align: center;">
@@ -157,7 +162,7 @@ font-family: fantasy;
 			<div class="footer_copyright"
 				style="line-height: 30px; text-align: center;">
 				<span>京ICP证041189号</span><span class="sep">|</span><span>出版物经营许可证
-					新出发京批字第直0673号</span><span class="sep">|</span><span>食品流通许可证：SP1101011010021855(1-1)</span><br/>
+					新出发京批字第直0673号</span><span class="sep">|</span><span>食品流通许可证：SP1101011010021855(1-1)</span><br />
 				<span>互联网药品信息服务资格证编号：(京)-非经营性-2012-0016</span><span class="sep">|</span><span>京公网安备110101000001号</span>
 			</div>
 			<!-- 有三个icon的时候加footer_icon2 -->
@@ -166,13 +171,13 @@ font-family: fantasy;
 					<a></a>
 				</div>
 				<div class="validator">
-					<a><img src=""/></a>
+					<a><img src="" /></a>
 				</div>
 				<div class="validator">
-					<a href="" target="_blank"><img src=""/></a>
+					<a href="" target="_blank"><img src="" /></a>
 				</div>
 				<div class="validator">
-					<a><img src=""/></a>
+					<a><img src="" /></a>
 				</div>
 			</div>
 		</div>
@@ -181,17 +186,136 @@ font-family: fantasy;
 
 	<script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js">
 		</script>
-	<script type="text/javascript" src="/resources/js/bootstrap.js">
-		</script>
+	<script type="text/javascript"
+		src="/resources/js/common/bootstrap.min.js">
+	</script>
+	<script type="text/javascript" src="/resources/js/city.js"></script>
+	<script type="text/javascript" src="/resources/js/vue/dist/vue.min.js">
+	</script>
+	<script type="text/javascript"
+		src="/resources/js/axios/dist/axios.min.js">
+	</script>
+
 	<script type="text/javascript">
 		$(function() {
 			$(".col-sm-3  .vcodeimg").click(
 					function() {
 						//追加一个随机数，要不然只能换一次
-						$(".col-sm-3  img.vcodeimg").attr("src",
-								"/vode.png?t=" + Math.random());
+						$(".col-sm-3  img.vcodeimg").attr("src","/vode.png?t=" + Math.random());
 					});
 		});
 	</script>
+	<script type="text/javascript" th:inline="javascript">
+if([[${msg}]]){
+$("#msgInfo").css("display","block")	
+}
+</script>
+
+	<script type="text/javascript">
+/* function validation(){
+	var pwd1=$("#inputPassword").val();
+	console.log(pwd1);
+	var pwd2=$("#inputPassword2").val();
+	console.log(pwd2);
+	if(pwd1!=pwd2){
+		alert("两次输入的密码不一致");
+		
+		return false;
+		}
+	return true;
+} */
+</script>
+	<script type="text/javascript" th:inline="javascript">
+    var app=new Vue({
+
+         el:'#app',
+         data:{
+             
+             },
+          methods:{
+        	  onSubmit:function(){
+                    
+        		  var pwd1=$("#inputPassword").val();
+        			console.log(pwd1);
+        			var pwd2=$("#inputPassword2").val();
+        			console.log(pwd2);
+        			if(pwd1!=pwd2){
+        				$("input[name='password']").addClass("is-invalid").next(".invalid-feedback").html("两次密码不一致！");
+        				$("input[name='password2']").addClass("is-invalid").next(".invalid-feedback").html("两次密码不一致！");
+            			return ;
+        			}
+        			var vcode=$("#inputVcode").val();
+        			var vode=[[${session.user.name}]];
+        			if(vcode!=vode){
+        				$("input[name='vcode']").addClass("is-invalid").next(".invalid-feedback").html("验证码不正确！");
+            			return ;
+            		}
+                     
+        			
+        			
+            	  
+        	  var form_Data=new FormData();
+        	  
+            	
+                 form_Data.append("name",$("#inputmobile").val());
+                 form_Data.append("password",$("#inputPassword").val());
+                  
+                 
+             axios.post("doRegister",form_Data).then(function(response){
+                   if(response.data){
+                	   
+                     if(response.data.success){
+                         
+                    	 window.location.href=response.data.url;
+                        
+                         }else{
+                           
+                        	// window.location.href=response.data.url;
+
+                             }
+                       
+
+                   } 
+            	 
+                   }).catch(function(error){
+
+
+
+
+                     });
+              
+ 
+
+
+
+
+            	  }  
+           
+
+
+
+              }   
+
+
+
+
+
+
+
+
+
+
+
+
+         });
+
+
+
+    
+
+
+	</script>
+
+
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import com.demo.model.Address;
 import com.demo.model.Order;
@@ -27,6 +28,8 @@ public interface OrderMapper {
 	Order findOrder(String code);
     @Delete("delete from order_from where id=#{code}")
 	int deleteOrder(String code);
+    @Update("update order_from set orderStatus=1 where id=#{r6_Order}")
+	int updateStatus(String r6_Order);
 	
 	
 	

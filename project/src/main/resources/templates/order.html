@@ -4,6 +4,9 @@
 <head>
 <meta charset="UTF-8" />
 <title></title>
+<link rel="stylesheet" href="resources/css/common/bootstrap.min.css" />
+<link rel="stylesheet" href="resources/css/common/nav.css" />
+<link rel="stylesheet" href="resources/css/common/index.css" />
 <link rel="stylesheet" href="/resources/css/bootstrap.css"
 	type="text/css" />
 <!-- 引入自定义css文件 style.css -->
@@ -28,6 +31,34 @@ body {
 <body>
 	<!--1 购物车项头顶设计-->
 	<div class="container">
+	  <!--  -->
+	  <div class="top">
+	    
+				<ul>
+				    <li><a name="nav2" target="_blank" href="/toLogout"
+						class="nav"> 退出 </a></li>
+					<td th:if="${session.user==null}">
+						<li><a name="nav2" target="_blank" href="/toLogin"
+							class="nav"> 登陆 </a></li>
+
+					</td>
+					<td th:unless="${session.user==null}">
+						<li>欢迎：<span style="color: red;" th:inline="text">
+								[[${session.user.name}]] </span>登录
+					</li>
+					</td>
+
+
+					<li><a name="nav2" target="_blank" href="/toRegister"
+						class="nav"> 注册 </a></li>
+					<li><a name="nav2" target="_blank" href="/toCart" class="nav">
+							我的购物车 </a></li>
+					<li><a name="nav2" target="_blank" href="/toOrderList"
+						class="nav"> 我的订单 </a></li>
+				</ul>
+
+			</div>
+	  <!--  -->
 		<div class="row">
 			<div class="col-md-12">
 				<div style="margin-top: 10px; padding-left: 90px;">

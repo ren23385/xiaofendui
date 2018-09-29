@@ -4,8 +4,9 @@
 <head>
 <meta charset="UTF-8" />
 <title></title>
-<link rel="stylesheet" href="/resources/css/bootstrap.css"
-	type="text/css" />
+<link rel="stylesheet" href="resources/css/common/bootstrap.min.css" />
+<link rel="stylesheet" href="resources/css/common/nav.css" />
+<link rel="stylesheet" href="resources/css/common/index.css" />
 <!-- 删除图标 -->
 <link href="/resources/icon/iconfont.css" rel="stylesheet"
 	type="text/css" />
@@ -38,6 +39,32 @@ font {
 </head>
 
 <body style="background: #FEF7F5;">
+	<!-- 头部 -->
+	<div class="top">
+				<ul>
+				    <li><a name="nav2" target="_blank" href="/toLogout"
+						class="nav"> 退出 </a></li>
+					<td th:if="${session.user==null}">
+						<li><a name="nav2" target="_blank" href="/toLogin"
+							class="nav"> 登陆 </a></li>
+
+					</td>
+					<td th:unless="${session.user==null}">
+						<li>欢迎：<span style="color: red;" th:inline="text">
+								[[${session.user.name}]] </span>登录
+					</li>
+					</td>
+
+
+					<li><a name="nav2" target="_blank" href="/toRegister"
+						class="nav"> 注册 </a></li>
+					<li><a name="nav2" target="_blank" href="/toCart" class="nav">
+							我的购物车 </a></li>
+					<li><a name="nav2" target="_blank" href="/toOrderList"
+						class="nav"> 我的订单 </a></li>
+				</ul>
+
+			</div>
 	<!--1 购物车项头顶设计-->
 	<div class="container">
 		<div class="row">
@@ -130,7 +157,8 @@ font {
 
 								</td>
 								<td width="13%"><span class="subtotal" th:inline="text">[[${cart.sumPrice}]]</span></td>
-								<td width="10%"><a th:href="@{'/delBookFromCart?id='+${cart.id}}" title="删除"
+								<td width="10%"><a
+									th:href="@{'/delBookFromCart?id='+${cart.id}}" title="删除"
 									id="delete" data-toggle="modal" data-target="#exampleModal"
 									onclick="delFunction(event);"> 删除 </a></td>
 							</tr>
@@ -329,7 +357,6 @@ font {
  	    //给确认框绑定一次性事件
 	   $("#sureDel").one("click",function(){
 	   window.location.href=url;
-	   alert(url);
 	   });
 
 
@@ -371,14 +398,18 @@ $num.attr("value",parseInt(number) + 1);
 
 
 });
-$(".add-plus-input .plus").click(function() {
+$(".add-plus-input .plus").click(function(event) {
 var $num = $(this).prev(".num");
 var number = $num.attr("value");
 if(number>1)
 	{
 $num.attr("value",parseInt(number) - 1);
-
-	}
+  
+	}else{
+		//取消超级链接的默认行为
+	 	 event.preventDefault();
+  
+}
 	
 });
 })

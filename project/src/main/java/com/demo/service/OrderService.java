@@ -19,4 +19,6 @@ public interface OrderService {
 	Order findOrder(String code);
 
 	int deleteOrderById(String code);
+
+	int updateStatus(String r6_Order);
 }

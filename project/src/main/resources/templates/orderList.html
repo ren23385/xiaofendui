@@ -91,10 +91,12 @@
 					<tbody v-for="order in list">
 						<tr class="warning" style="background: #EFF3FF">
 							<th colspan="5">订单号：<span id="orderCode">{{order.id}}</span>
-								<span style="margin-left: 50px">订单状态：<span
-									style="color: red">未付款</span></span> <span style="margin-left: 100px">￥<span
+								<span style="margin-left: 50px">订单状态：
+								<span style="color: red" v-if="order.orderStatus==0">未付款</span>
+								<span style="color: blue;" v-if="order.orderStatus==1">已付款</span>
+								</span> <span style="margin-left: 100px">￥<span
 									id="orderMoney">{{order.totallPrice}}</span></span> <!-- 操作 --> <span><a
-									href="#" style="margin-left: 350px"
+									href="#" style="margin-left: 200px"
 									v-on:click="toPayView(order.id,order.totallPrice)"> <img
 										src="/resources/img/order/zhifu.png" id="submitOrder"
 										width="80" height="30" border="0" /></a></span> <span><a v-bind:href="'/deleteOrder?code='+order.id" data-toggle="modal" data-target="#exampleModal"

@@ -107,14 +107,14 @@ public class CartController {
 		if(delBookFromCart>0) {
 			
 			
-			return "cart";
+			return "redirect:/toCart";
 		}
-		return "cart";
+		return "redirect:/toCart";
 		
 	}
 	// 清空购物车
 	
-	@RequestMapping("clearCart")
+	@RequestMapping("/clearCart")
 	public String clearCart(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		int clearCart = cartService.clearCart(user.getId());
@@ -123,7 +123,7 @@ public class CartController {
 			
 			return "cart";
 		}
-		return "cart";
+		return "redirect:/toCart";
 		
 	}
 	

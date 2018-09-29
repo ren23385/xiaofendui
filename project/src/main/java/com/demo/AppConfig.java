@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.demo.interceptor.LoginInterceptor;
 
 @Configuration
-public class AppConfig {
+public class AppConfig extends WebMvcConfigurerAdapter{
 	
 	@Autowired
 	public Environment env;
@@ -26,5 +29,11 @@ public class AppConfig {
 		return dataSource;
 	}
 	
+	// 权限拦截
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LoginInterceptor());//把拦截权限加到拦截器内
+		
+	}
 
 }

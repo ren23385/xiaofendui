@@ -48,4 +48,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.deleteOrder(code);
 	}
 
+	@Override
+	public int updateStatus(String r6_Order) {
+		return orderMapper.updateStatus(r6_Order);
+	}
+
 }

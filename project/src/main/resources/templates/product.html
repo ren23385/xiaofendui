@@ -88,11 +88,19 @@ a {
 						<div class="headoperate " id="headmenu"
 							style="text-align: center; line-height: 80px">
 							<ul class="nav_operate">
+
 								<li id="nav_operate"><a href="/toCart" target="_blank">购物车</a></li>
-								<li id="nav_operate"><a href="" target="_blank">我的当当</a></li>
-								<li id="nav_operate"><a href="" target="_blank">手机当当</a></li>
-								<li id="nav_operate"><a href="" target="_blank">企业销售</a></li>
-								<li id="nav_operate"><a href="" target="_blank">帮助</a></li>
+								<li id="nav_operate"><a href="/" target="_blank">我的当当</a></li>
+								<td th:if="${session.user==null}">
+								<li id="nav_operate"><a  target="_blank" href="/toLogin"> 登陆 </a></li>
+
+								</td>
+								<td th:unless="${session.user==null}">
+									<li id="nav_operate">欢迎：<span style="color: red;" th:inline="text">
+											[[${session.user.name}]] </span>登录
+								</li>
+								</td>
+								<li id="nav_operate"><a href="/toLogout"> 退出 </a></li>
 							</ul>
 						</div>
 					</div>
@@ -125,9 +133,9 @@ a {
 			style="margin-top: 0px; margin-left: 30px; margin-right: 15px;"
 			id="app">
 			<div class="col-md-12">
-				<form action="toAddCart" method="post"  th:object="${book}">
-				  <!-- 用来获取book_id数据 -->
-				<input type="hidden" name="id"   th:value="${book.id}"/>
+				<form action="toAddCart" method="post" th:object="${book}">
+					<!-- 用来获取book_id数据 -->
+					<input type="hidden" name="id" th:value="${book.id}" />
 					<div class="col-md-3"
 						style="margin-left: 40px; border-right-width: 40px; margin-right: 20px;">
 
@@ -145,16 +153,16 @@ a {
 								<span title="橘子不是唯一的水果" style="position: relative;"> <img
 									src="/resources/img/product/icon_ddzy.png"
 									style="position: relative; top: 2px; margin-bottom: 6px; margin-right: 3px;"
-									 th:text="${book.bookName}" /> 
-									
-								</span>
-								<input type="hidden" name="bookName"   th:value="${book.bookName}"/> 
+									th:text="${book.bookName}" />
+
+								</span> <input type="hidden" name="bookName"
+									th:value="${book.bookName}" />
 							</h1>
 							<h2 style="font-size: 16px; line-height: 24px; color: #323232">
 								<span class="head_title_name"
 									title="橘子不是唯 一的水果，你的人生，还有别的可能！张悦然、蒋方舟、任晓雯、刘瑜一致推荐的当代英国天才女作家 。一部大胆的、光芒四射的小说。就天赋与灵气而言，少有作家能与珍妮特·温特森相比！&nbsp;&nbsp;"
 									th:text="${book.descri}"> </span>
-								   
+
 							</h2>
 							<div style="border: dotted 1px #EBEBEB; width: 100%;"></div>
 						</div>
@@ -185,9 +193,9 @@ a {
 							</div>
 							<div style="font-size: 30px; color: orangered;">
 								<span style="font-size: 20px;">￥</span> <span th:inline="text">[[${book.newPrice}]]</span>
-								   <!-- 用来获取newPrice数据 -->
-									<input type="hidden" name="newPrice"   th:value="${book.newPrice}"/>
-								
+								<!-- 用来获取newPrice数据 -->
+								<input type="hidden" name="newPrice" th:value="${book.newPrice}" />
+
 								<span style="font-size: 16px; color: #ADB5BD;">定价</span>
 								<del style="font-size: 16px; color: #ADB5BD;" th:inline="text">￥:[[${book.oldPrice}]]</del>
 							</div>
@@ -201,12 +209,12 @@ a {
 								<input type="text" class="num" value="1" name="number"
 									style="width: 60px; height: 40px; text-align: center; border: none; background-color: #FEFEFE;" />
 								<a href="javascript:;" class="plus btn" style="border: none;">-</a>
-								   
+
 							</div>
 							<div style="text-align: center; float: left;">
-								
-									<input type="submit" id="butt_submit" value="加入购物车"/>
-								
+
+								<input type="submit" id="butt_submit" value="加入购物车" />
+
 							</div>
 							<div style="text-align: center; float: left;">
 								<a href="cart.html"> <input id="butt_submit" value="立即购买"

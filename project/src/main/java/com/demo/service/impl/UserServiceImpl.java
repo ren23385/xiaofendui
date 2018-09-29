@@ -14,5 +14,18 @@ public class UserServiceImpl implements UserService{
 	public User findUser(String name, String password) {
 		return userMapper.findUser(name, password);
 	}
+	@Override
+	public Boolean findUserByName(String name) {
+		User user=userMapper.findUserByName(name);
+		if(user==null) {
+			return false;
+		}
+		return true;		
+	}
+	@Override
+	public int AddUser(User user) {
+		return userMapper.adduser(user);
+	}
+
 
 }
