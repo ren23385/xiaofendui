@@ -67,21 +67,33 @@ public class UserController {
 	// 注册
 
 	@RequestMapping("/doRegister")
-	@ResponseBody
-	public Map<String, Object> doRegister(@ModelAttribute User user) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("-----"+user);
-		Boolean b = userService.findUserByName(user.getName());
+	public String doRegister(@Valid @RequestParam String vcode, @RequestParam String name, @RequestParam String password,
+			@RequestParam String password2,HttpSession session, Model model) {
+
+		Boolean b = userService.findUserByName(name);
 		if (b) {
-			map.put("success", false);
-			map.put("msg", "该用户已注册，请直接登录或注册新用户");
-			return map;
+			model.addAttribute("msg", "该用户已注册，请直接登录或注册新用户");
+			return "register";
 		}
-		int ret = userService.AddUser(user);
-		map.put("success", true);
-		map.put("url", "/");
-       
-		return map;
+		
+		if (!b) {
+			if(!password.equals(password2)) {
+				model.addAttribute("msg", "两次密码不一致");
+				return "register";
+				
+			}
+			String Vodeattribute = (String) session.getAttribute(ValidateController.serverCode);
+			if (!vcode.equalsIgnoreCase(Vodeattribute)) {
+
+				model.addAttribute("msg", "验证码输入错误");
+				return "register";
+			}
+			User user = new User(name, password);
+			int ret = userService.AddUser(user);
+
+			model.addAttribute("msg", "您已注册成功，请直接登录");
+		}
+		return "login";
 	}
 
 	@RequestMapping("/toLogout")

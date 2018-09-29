@@ -22,8 +22,8 @@ public interface OrderMapper {
 	List<Address> findAddressById(int id);
     @Insert("insert into order_from(id,totallPrice,user_id,addressId) values(#{id},#{totallPrice},#{user_id},#{addressId})")
 	int addOrder(Order order);
-    @Select("select * from order_from")
-	List<Order> findAllOrder();
+    @Select("select * from order_from where user_id=#{i}")
+	List<Order> findAllOrder(int i);
     @Select("select * from order_from where id=#{code}")
 	Order findOrder(String code);
     @Delete("delete from order_from where id=#{code}")

@@ -95,11 +95,11 @@ public class OrderItemController {
 	
 	@RequestMapping("/getOrderList")
     @ResponseBody
-	public Map<String,Object> getOrderItemList() {
-		
+	public Map<String,Object> getOrderItemList( HttpSession session) {
+		User user = (User) session.getAttribute("user");
 
 		Map<String,Object> map=new HashMap<>();
-		List<Order>list=orderService.findAllOrder();
+		List<Order>list=orderService.findAllOrder(user.getId());
 		for (Order order : list) {
 		   	
 			List<OrderItem>orderItemList=orderItemService.findAll(order.getId());

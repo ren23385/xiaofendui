@@ -15,7 +15,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		String uri = request.getRequestURI();
 		
 		if(request.getSession().getAttribute("user")==null) {
-			if(uri.endsWith("/totalTypes")||uri.endsWith("/singleTypes")||uri.endsWith("/toProduct")||uri.endsWith("/toProduct2")||uri.endsWith("/searchWord")||uri.endsWith("/findTodayBooks")||uri.endsWith("/toLogin")||uri.endsWith("/doLogin")||uri.endsWith("/vode.png")||uri.endsWith("/toBookList")||uri.endsWith("/bookList")||uri.endsWith("/")||uri.endsWith("/findAllNewBooks"))
+			if(uri.endsWith("/doRegister")||uri.endsWith("/toRegister")||uri.endsWith("/totalTypes")||uri.endsWith("/singleTypes")||uri.endsWith("/toProduct")||uri.endsWith("/toProduct2")||uri.endsWith("/searchWord")||uri.endsWith("/findTodayBooks")||uri.endsWith("/toLogin")||uri.endsWith("/doLogin")||uri.endsWith("/vode.png")||uri.endsWith("/toBookList")||uri.endsWith("/bookList")||uri.endsWith("/")||uri.endsWith("/findAllNewBooks"))
 			{
 				return true;// 让流程继续走
 				

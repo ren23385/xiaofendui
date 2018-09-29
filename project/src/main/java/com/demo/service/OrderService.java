@@ -14,7 +14,7 @@ public interface OrderService {
 
 	int addOrder(Order order);
 
-	List<Order> findAllOrder();
+	List<Order> findAllOrder(int i);
 
 	Order findOrder(String code);
 

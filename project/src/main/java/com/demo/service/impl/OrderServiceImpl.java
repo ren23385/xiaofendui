@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Order> findAllOrder() {
-		return orderMapper.findAllOrder();
+	public List<Order> findAllOrder(int i) {
+		return orderMapper.findAllOrder(i);
 	}
 
 	@Override
